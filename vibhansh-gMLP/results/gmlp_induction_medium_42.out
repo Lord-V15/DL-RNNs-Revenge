@@ -1,0 +1,289 @@
+================================================================================
+Causal gMLP Training
+================================================================================
+{
+  "task": "induction",
+  "length": "medium",
+  "block_size": 512,
+  "batch_size": 64,
+  "max_steps": 20000,
+  "learning_rate": 0.0003,
+  "warmup_steps": 200,
+  "lr_decay_steps": 50000,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "seed": 42,
+  "data_path": "./data/tinyshakespeare/input.txt",
+  "data_dir": "./data",
+  "output_dir": "./results",
+  "log_interval": 100,
+  "eval_interval": 500,
+  "dropout": 0.05,
+  "save_checkpoint": false
+}
+================================================================================
+Using device: cuda
+Loading induction task (medium) from ./data...
+Train batches: 157, Val batches: 16
+Created Causal gMLP model:
+  Vocab size: 27
+  Sequence length: 512
+  d_model: 128
+  d_ffn: 512
+  Layers: 4
+  Parameters: 731,264
+
+Model has 731,264 parameters
+
+Starting training for 20000 steps...
+Task: induction, Block size: 512, Batch size: 64
+Step     0/20000 | Loss: 3.2099 | LR: 0.000001 | Time: 0.7s
+  Validation | Loss: 3.2076 | PPL: 24.7202
+Step   100/20000 | Loss: 2.7423 | LR: 0.000151 | Time: 40.5s
+Step   200/20000 | Loss: 2.6474 | LR: 0.000300 | Time: 78.7s
+Step   300/20000 | Loss: 2.6417 | LR: 0.000300 | Time: 117.1s
+Step   400/20000 | Loss: 2.6393 | LR: 0.000300 | Time: 155.2s
+Step   500/20000 | Loss: 2.6389 | LR: 0.000300 | Time: 193.3s
+  Validation | Loss: 2.6386 | PPL: 13.9936
+Step   600/20000 | Loss: 2.6382 | LR: 0.000300 | Time: 233.0s
+Step   700/20000 | Loss: 2.6379 | LR: 0.000300 | Time: 271.2s
+Step   800/20000 | Loss: 2.6375 | LR: 0.000300 | Time: 309.3s
+Step   900/20000 | Loss: 2.6329 | LR: 0.000300 | Time: 347.7s
+Step  1000/20000 | Loss: 2.6137 | LR: 0.000300 | Time: 385.8s
+  Validation | Loss: 2.6135 | PPL: 13.6471
+Step  1100/20000 | Loss: 2.6095 | LR: 0.000300 | Time: 425.3s
+Step  1200/20000 | Loss: 2.6084 | LR: 0.000300 | Time: 463.7s
+Step  1300/20000 | Loss: 2.6069 | LR: 0.000300 | Time: 501.8s
+Step  1400/20000 | Loss: 2.6068 | LR: 0.000300 | Time: 540.2s
+Step  1500/20000 | Loss: 2.6061 | LR: 0.000300 | Time: 578.4s
+  Validation | Loss: 2.6080 | PPL: 13.5719
+Step  1600/20000 | Loss: 2.6041 | LR: 0.000299 | Time: 617.8s
+Step  1700/20000 | Loss: 2.6051 | LR: 0.000299 | Time: 656.2s
+Step  1800/20000 | Loss: 2.6038 | LR: 0.000299 | Time: 694.3s
+Step  1900/20000 | Loss: 2.6018 | LR: 0.000299 | Time: 732.5s
+Step  2000/20000 | Loss: 2.6041 | LR: 0.000299 | Time: 770.9s
+  Validation | Loss: 2.6092 | PPL: 13.5883
+Step  2100/20000 | Loss: 2.6027 | LR: 0.000299 | Time: 810.3s
+Step  2200/20000 | Loss: 2.6003 | LR: 0.000299 | Time: 848.4s
+Step  2300/20000 | Loss: 2.6012 | LR: 0.000299 | Time: 886.8s
+Step  2400/20000 | Loss: 2.5998 | LR: 0.000299 | Time: 924.9s
+Step  2500/20000 | Loss: 2.6018 | LR: 0.000299 | Time: 963.4s
+  Validation | Loss: 2.6107 | PPL: 13.6092
+Step  2600/20000 | Loss: 2.5993 | LR: 0.000298 | Time: 1002.8s
+Step  2700/20000 | Loss: 2.5972 | LR: 0.000298 | Time: 1040.9s
+Step  2800/20000 | Loss: 2.5989 | LR: 0.000298 | Time: 1079.3s
+Step  2900/20000 | Loss: 2.5959 | LR: 0.000298 | Time: 1117.5s
+Step  3000/20000 | Loss: 2.5925 | LR: 0.000298 | Time: 1155.6s
+  Validation | Loss: 2.6196 | PPL: 13.7298
+Step  3100/20000 | Loss: 2.5966 | LR: 0.000298 | Time: 1195.4s
+Step  3200/20000 | Loss: 2.5945 | LR: 0.000298 | Time: 1233.5s
+Step  3300/20000 | Loss: 2.5875 | LR: 0.000297 | Time: 1271.7s
+Step  3400/20000 | Loss: 2.5934 | LR: 0.000297 | Time: 1310.1s
+Step  3500/20000 | Loss: 2.5916 | LR: 0.000297 | Time: 1348.2s
+  Validation | Loss: 2.6217 | PPL: 13.7592
+Step  3600/20000 | Loss: 2.5919 | LR: 0.000297 | Time: 1388.0s
+Step  3700/20000 | Loss: 2.5902 | LR: 0.000297 | Time: 1426.1s
+Step  3800/20000 | Loss: 2.5865 | LR: 0.000297 | Time: 1464.2s
+Step  3900/20000 | Loss: 2.5918 | LR: 0.000296 | Time: 1502.7s
+Step  4000/20000 | Loss: 2.5866 | LR: 0.000296 | Time: 1540.8s
+  Validation | Loss: 2.6248 | PPL: 13.8021
+Step  4100/20000 | Loss: 2.5798 | LR: 0.000296 | Time: 1580.3s
+Step  4200/20000 | Loss: 2.5873 | LR: 0.000296 | Time: 1618.7s
+Step  4300/20000 | Loss: 2.5822 | LR: 0.000296 | Time: 1656.8s
+Step  4400/20000 | Loss: 2.5753 | LR: 0.000295 | Time: 1695.0s
+Step  4500/20000 | Loss: 2.5848 | LR: 0.000295 | Time: 1733.4s
+  Validation | Loss: 2.6265 | PPL: 13.8250
+Step  4600/20000 | Loss: 2.5783 | LR: 0.000295 | Time: 1772.8s
+Step  4700/20000 | Loss: 2.5830 | LR: 0.000295 | Time: 1811.2s
+Step  4800/20000 | Loss: 2.5786 | LR: 0.000294 | Time: 1849.4s
+Step  4900/20000 | Loss: 2.5687 | LR: 0.000294 | Time: 1887.5s
+Step  5000/20000 | Loss: 2.5792 | LR: 0.000294 | Time: 1925.9s
+  Validation | Loss: 2.6302 | PPL: 13.8771
+Step  5100/20000 | Loss: 2.5766 | LR: 0.000294 | Time: 1965.4s
+Step  5200/20000 | Loss: 2.5677 | LR: 0.000293 | Time: 2003.5s
+Step  5300/20000 | Loss: 2.5788 | LR: 0.000293 | Time: 2041.9s
+Step  5400/20000 | Loss: 2.5708 | LR: 0.000293 | Time: 2080.0s
+Step  5500/20000 | Loss: 2.5650 | LR: 0.000293 | Time: 2118.1s
+  Validation | Loss: 2.6523 | PPL: 14.1868
+Step  5600/20000 | Loss: 2.5711 | LR: 0.000292 | Time: 2157.8s
+Step  5700/20000 | Loss: 2.5690 | LR: 0.000292 | Time: 2196.0s
+Step  5800/20000 | Loss: 2.5732 | LR: 0.000292 | Time: 2234.4s
+Step  5900/20000 | Loss: 2.5672 | LR: 0.000291 | Time: 2272.5s
+Step  6000/20000 | Loss: 2.5606 | LR: 0.000291 | Time: 2310.7s
+  Validation | Loss: 2.6477 | PPL: 14.1210
+Step  6100/20000 | Loss: 2.5710 | LR: 0.000291 | Time: 2350.4s
+Step  6200/20000 | Loss: 2.5669 | LR: 0.000290 | Time: 2388.5s
+Step  6300/20000 | Loss: 2.5550 | LR: 0.000290 | Time: 2426.7s
+Step  6400/20000 | Loss: 2.5669 | LR: 0.000290 | Time: 2465.0s
+Step  6500/20000 | Loss: 2.5625 | LR: 0.000289 | Time: 2503.2s
+  Validation | Loss: 2.6490 | PPL: 14.1406
+Step  6600/20000 | Loss: 2.5538 | LR: 0.000289 | Time: 2542.6s
+Step  6700/20000 | Loss: 2.5681 | LR: 0.000289 | Time: 2581.0s
+Step  6800/20000 | Loss: 2.5595 | LR: 0.000288 | Time: 2619.2s
+Step  6900/20000 | Loss: 2.5674 | LR: 0.000288 | Time: 2657.6s
+Step  7000/20000 | Loss: 2.5646 | LR: 0.000288 | Time: 2695.7s
+  Validation | Loss: 2.6460 | PPL: 14.0978
+Step  7100/20000 | Loss: 2.5584 | LR: 0.000287 | Time: 2735.1s
+Step  7200/20000 | Loss: 2.5662 | LR: 0.000287 | Time: 2773.5s
+Step  7300/20000 | Loss: 2.5598 | LR: 0.000287 | Time: 2811.6s
+Step  7400/20000 | Loss: 2.5541 | LR: 0.000286 | Time: 2849.7s
+Step  7500/20000 | Loss: 2.5660 | LR: 0.000286 | Time: 2888.1s
+  Validation | Loss: 2.6491 | PPL: 14.1419
+Step  7600/20000 | Loss: 2.5589 | LR: 0.000286 | Time: 2927.6s
+Step  7700/20000 | Loss: 2.5500 | LR: 0.000285 | Time: 2965.7s
+Step  7800/20000 | Loss: 2.5628 | LR: 0.000285 | Time: 3004.1s
+Step  7900/20000 | Loss: 2.5564 | LR: 0.000284 | Time: 3042.2s
+Step  8000/20000 | Loss: 2.5627 | LR: 0.000284 | Time: 3080.6s
+  Validation | Loss: 2.6489 | PPL: 14.1379
+Step  8100/20000 | Loss: 2.5590 | LR: 0.000284 | Time: 3120.0s
+Step  8200/20000 | Loss: 2.5533 | LR: 0.000283 | Time: 3158.2s
+Step  8300/20000 | Loss: 2.5598 | LR: 0.000283 | Time: 3196.6s
+Step  8400/20000 | Loss: 2.5566 | LR: 0.000282 | Time: 3234.7s
+Step  8500/20000 | Loss: 2.5501 | LR: 0.000282 | Time: 3272.8s
+  Validation | Loss: 2.6604 | PPL: 14.3024
+Step  8600/20000 | Loss: 2.5591 | LR: 0.000281 | Time: 3312.6s
+Step  8700/20000 | Loss: 2.5558 | LR: 0.000281 | Time: 3350.7s
+Step  8800/20000 | Loss: 2.5452 | LR: 0.000281 | Time: 3388.8s
+Step  8900/20000 | Loss: 2.5607 | LR: 0.000280 | Time: 3427.2s
+Step  9000/20000 | Loss: 2.5541 | LR: 0.000280 | Time: 3465.3s
+  Validation | Loss: 2.6588 | PPL: 14.2794
+Step  9100/20000 | Loss: 2.5613 | LR: 0.000279 | Time: 3505.0s
+Step  9200/20000 | Loss: 2.5488 | LR: 0.000279 | Time: 3543.2s
+Step  9300/20000 | Loss: 2.5483 | LR: 0.000278 | Time: 3581.3s
+Step  9400/20000 | Loss: 2.5566 | LR: 0.000278 | Time: 3619.7s
+Step  9500/20000 | Loss: 2.5528 | LR: 0.000277 | Time: 3657.8s
+  Validation | Loss: 2.6597 | PPL: 14.2921
+Step  9600/20000 | Loss: 2.5458 | LR: 0.000277 | Time: 3697.3s
+Step  9700/20000 | Loss: 2.5547 | LR: 0.000276 | Time: 3735.7s
+Step  9800/20000 | Loss: 2.5463 | LR: 0.000276 | Time: 3773.8s
+Step  9900/20000 | Loss: 2.5449 | LR: 0.000275 | Time: 3811.9s
+Step 10000/20000 | Loss: 2.5500 | LR: 0.000275 | Time: 3850.3s
+  Validation | Loss: 2.6562 | PPL: 14.2424
+Step 10100/20000 | Loss: 2.5487 | LR: 0.000275 | Time: 3889.8s
+Step 10200/20000 | Loss: 2.5550 | LR: 0.000274 | Time: 3928.2s
+Step 10300/20000 | Loss: 2.5485 | LR: 0.000274 | Time: 3966.3s
+Step 10400/20000 | Loss: 2.5476 | LR: 0.000273 | Time: 4004.4s
+Step 10500/20000 | Loss: 2.5535 | LR: 0.000272 | Time: 4042.9s
+  Validation | Loss: 2.6551 | PPL: 14.2262
+Step 10600/20000 | Loss: 2.5488 | LR: 0.000272 | Time: 4082.4s
+Step 10700/20000 | Loss: 2.5438 | LR: 0.000271 | Time: 4120.5s
+Step 10800/20000 | Loss: 2.5511 | LR: 0.000271 | Time: 4159.0s
+Step 10900/20000 | Loss: 2.5460 | LR: 0.000270 | Time: 4197.2s
+Step 11000/20000 | Loss: 2.5405 | LR: 0.000270 | Time: 4235.3s
+  Validation | Loss: 2.6628 | PPL: 14.3368
+Step 11100/20000 | Loss: 2.5488 | LR: 0.000269 | Time: 4275.1s
+Step 11200/20000 | Loss: 2.5453 | LR: 0.000269 | Time: 4313.3s
+Step 11300/20000 | Loss: 2.5515 | LR: 0.000268 | Time: 4351.7s
+Step 11400/20000 | Loss: 2.5538 | LR: 0.000268 | Time: 4389.8s
+Step 11500/20000 | Loss: 2.5448 | LR: 0.000267 | Time: 4427.9s
+  Validation | Loss: 2.6659 | PPL: 14.3815
+Step 11600/20000 | Loss: 2.5506 | LR: 0.000267 | Time: 4467.6s
+Step 11700/20000 | Loss: 2.5497 | LR: 0.000266 | Time: 4505.7s
+Step 11800/20000 | Loss: 2.5407 | LR: 0.000265 | Time: 4543.8s
+Step 11900/20000 | Loss: 2.5480 | LR: 0.000265 | Time: 4582.2s
+Step 12000/20000 | Loss: 2.5486 | LR: 0.000264 | Time: 4620.3s
+  Validation | Loss: 2.6658 | PPL: 14.3799
+Step 12100/20000 | Loss: 2.5408 | LR: 0.000264 | Time: 4659.8s
+Step 12200/20000 | Loss: 2.5451 | LR: 0.000263 | Time: 4698.2s
+Step 12300/20000 | Loss: 2.5432 | LR: 0.000263 | Time: 4736.3s
+Step 12400/20000 | Loss: 2.5502 | LR: 0.000262 | Time: 4774.7s
+Step 12500/20000 | Loss: 2.5480 | LR: 0.000261 | Time: 4812.8s
+  Validation | Loss: 2.6606 | PPL: 14.3055
+Step 12600/20000 | Loss: 2.5413 | LR: 0.000261 | Time: 4852.3s
+Step 12700/20000 | Loss: 2.5502 | LR: 0.000260 | Time: 4890.7s
+Step 12800/20000 | Loss: 2.5453 | LR: 0.000260 | Time: 4928.8s
+Step 12900/20000 | Loss: 2.5366 | LR: 0.000259 | Time: 4966.9s
+Step 13000/20000 | Loss: 2.5468 | LR: 0.000258 | Time: 5005.3s
+  Validation | Loss: 2.6659 | PPL: 14.3811
+Step 13100/20000 | Loss: 2.5424 | LR: 0.000258 | Time: 5044.7s
+Step 13200/20000 | Loss: 2.5354 | LR: 0.000257 | Time: 5082.8s
+Step 13300/20000 | Loss: 2.5475 | LR: 0.000256 | Time: 5121.2s
+Step 13400/20000 | Loss: 2.5401 | LR: 0.000256 | Time: 5159.4s
+Step 13500/20000 | Loss: 2.5493 | LR: 0.000255 | Time: 5197.8s
+  Validation | Loss: 2.6616 | PPL: 14.3193
+Step 13600/20000 | Loss: 2.5462 | LR: 0.000255 | Time: 5237.2s
+Step 13700/20000 | Loss: 2.5408 | LR: 0.000254 | Time: 5275.3s
+Step 13800/20000 | Loss: 2.5472 | LR: 0.000253 | Time: 5313.8s
+Step 13900/20000 | Loss: 2.5441 | LR: 0.000253 | Time: 5351.9s
+Step 14000/20000 | Loss: 2.5348 | LR: 0.000252 | Time: 5390.0s
+  Validation | Loss: 2.6712 | PPL: 14.4571
+Step 14100/20000 | Loss: 2.5434 | LR: 0.000251 | Time: 5429.7s
+Step 14200/20000 | Loss: 2.5391 | LR: 0.000251 | Time: 5467.8s
+Step 14300/20000 | Loss: 2.5318 | LR: 0.000250 | Time: 5506.0s
+Step 14400/20000 | Loss: 2.5428 | LR: 0.000249 | Time: 5544.3s
+Step 14500/20000 | Loss: 2.5391 | LR: 0.000249 | Time: 5582.5s
+  Validation | Loss: 2.6713 | PPL: 14.4590
+Step 14600/20000 | Loss: 2.5518 | LR: 0.000248 | Time: 5621.9s
+Step 14700/20000 | Loss: 2.5452 | LR: 0.000247 | Time: 5660.3s
+Step 14800/20000 | Loss: 2.5394 | LR: 0.000247 | Time: 5698.4s
+Step 14900/20000 | Loss: 2.5452 | LR: 0.000246 | Time: 5736.8s
+Step 15000/20000 | Loss: 2.5381 | LR: 0.000245 | Time: 5774.9s
+  Validation | Loss: 2.6719 | PPL: 14.4681
+Step 15100/20000 | Loss: 2.5378 | LR: 0.000245 | Time: 5814.4s
+Step 15200/20000 | Loss: 2.5435 | LR: 0.000244 | Time: 5852.8s
+Step 15300/20000 | Loss: 2.5405 | LR: 0.000243 | Time: 5890.9s
+Step 15400/20000 | Loss: 2.5338 | LR: 0.000243 | Time: 5929.0s
+Step 15500/20000 | Loss: 2.5424 | LR: 0.000242 | Time: 5967.4s
+  Validation | Loss: 2.6675 | PPL: 14.4045
+Step 15600/20000 | Loss: 2.5426 | LR: 0.000241 | Time: 6006.8s
+Step 15700/20000 | Loss: 2.5284 | LR: 0.000240 | Time: 6044.9s
+Step 15800/20000 | Loss: 2.5401 | LR: 0.000240 | Time: 6083.3s
+Step 15900/20000 | Loss: 2.5339 | LR: 0.000239 | Time: 6121.5s
+Step 16000/20000 | Loss: 2.5430 | LR: 0.000238 | Time: 6159.9s
+  Validation | Loss: 2.6695 | PPL: 14.4323
+Step 16100/20000 | Loss: 2.5362 | LR: 0.000238 | Time: 6199.4s
+Step 16200/20000 | Loss: 2.5347 | LR: 0.000237 | Time: 6237.6s
+Step 16300/20000 | Loss: 2.5469 | LR: 0.000236 | Time: 6276.0s
+Step 16400/20000 | Loss: 2.5405 | LR: 0.000235 | Time: 6314.2s
+Step 16500/20000 | Loss: 2.5349 | LR: 0.000235 | Time: 6352.3s
+  Validation | Loss: 2.6755 | PPL: 14.5203
+Step 16600/20000 | Loss: 2.5406 | LR: 0.000234 | Time: 6392.1s
+Step 16700/20000 | Loss: 2.5345 | LR: 0.000233 | Time: 6430.3s
+Step 16800/20000 | Loss: 2.5301 | LR: 0.000232 | Time: 6468.4s
+Step 16900/20000 | Loss: 2.5400 | LR: 0.000232 | Time: 6506.9s
+Step 17000/20000 | Loss: 2.5363 | LR: 0.000231 | Time: 6545.0s
+  Validation | Loss: 2.6763 | PPL: 14.5316
+Step 17100/20000 | Loss: 2.5410 | LR: 0.000230 | Time: 6584.8s
+Step 17200/20000 | Loss: 2.5329 | LR: 0.000230 | Time: 6622.9s
+Step 17300/20000 | Loss: 2.5323 | LR: 0.000229 | Time: 6661.1s
+Step 17400/20000 | Loss: 2.5390 | LR: 0.000228 | Time: 6699.6s
+Step 17500/20000 | Loss: 2.5370 | LR: 0.000227 | Time: 6737.7s
+  Validation | Loss: 2.6757 | PPL: 14.5222
+Step 17600/20000 | Loss: 2.5285 | LR: 0.000227 | Time: 6777.2s
+Step 17700/20000 | Loss: 2.5369 | LR: 0.000226 | Time: 6815.7s
+Step 17800/20000 | Loss: 2.5359 | LR: 0.000225 | Time: 6853.9s
+Step 17900/20000 | Loss: 2.5302 | LR: 0.000224 | Time: 6892.0s
+Step 18000/20000 | Loss: 2.5419 | LR: 0.000223 | Time: 6930.5s
+  Validation | Loss: 2.6730 | PPL: 14.4833
+Step 18100/20000 | Loss: 2.5339 | LR: 0.000223 | Time: 6969.9s
+Step 18200/20000 | Loss: 2.5426 | LR: 0.000222 | Time: 7008.3s
+Step 18300/20000 | Loss: 2.5349 | LR: 0.000221 | Time: 7046.5s
+Step 18400/20000 | Loss: 2.5341 | LR: 0.000220 | Time: 7084.6s
+Step 18500/20000 | Loss: 2.5412 | LR: 0.000220 | Time: 7123.0s
+  Validation | Loss: 2.6741 | PPL: 14.4987
+Step 18600/20000 | Loss: 2.5361 | LR: 0.000219 | Time: 7162.5s
+Step 18700/20000 | Loss: 2.5319 | LR: 0.000218 | Time: 7200.6s
+Step 18800/20000 | Loss: 2.5421 | LR: 0.000217 | Time: 7239.1s
+Step 18900/20000 | Loss: 2.5346 | LR: 0.000216 | Time: 7277.2s
+Step 19000/20000 | Loss: 2.5265 | LR: 0.000216 | Time: 7315.4s
+  Validation | Loss: 2.6875 | PPL: 14.6946
+Step 19100/20000 | Loss: 2.5402 | LR: 0.000215 | Time: 7355.1s
+Step 19200/20000 | Loss: 2.5312 | LR: 0.000214 | Time: 7393.3s
+Step 19300/20000 | Loss: 2.5404 | LR: 0.000213 | Time: 7431.8s
+Step 19400/20000 | Loss: 2.5362 | LR: 0.000212 | Time: 7470.0s
+Step 19500/20000 | Loss: 2.5312 | LR: 0.000212 | Time: 7508.1s
+  Validation | Loss: 2.6840 | PPL: 14.6430
+Step 19600/20000 | Loss: 2.5384 | LR: 0.000211 | Time: 7547.9s
+Step 19700/20000 | Loss: 2.5363 | LR: 0.000210 | Time: 7586.1s
+Step 19800/20000 | Loss: 2.5308 | LR: 0.000209 | Time: 7624.2s
+Step 19900/20000 | Loss: 2.5364 | LR: 0.000208 | Time: 7662.7s
+Step 19999/20000 | Loss: 2.5374 | LR: 0.000208 | Time: 7700.4s
+  Validation | Loss: 2.6774 | PPL: 14.5479
+
+Final evaluation on full validation set...
+  Overall PPL: 14.5479
+  Discriminating PPL: 1.0296
+  Accuracy: 0.9942
+
+Results saved to ./results/gmlp_induction_medium_42.json
+Total training time: 7703.1s (128.4 min)
