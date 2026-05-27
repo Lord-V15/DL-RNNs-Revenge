@@ -108,7 +108,8 @@ def evaluate_with_metrics(model, val_loader, device, task_type='copy'):
     Evaluate with task-specific metrics (for copy/induction tasks)
 
     Returns:
-        dict with overall_ppl, discriminating_ppl, accuracy (for copy/induction)
+        dict with overall_ppl, discriminating_ppl, accuracy, and for induction:
+        induction5_accuracy (P[4]-only, matching Transformer's metric)
     """
     model.eval()
     total_loss = 0.0
@@ -116,6 +117,8 @@ def evaluate_with_metrics(model, val_loader, device, task_type='copy'):
     discriminating_loss = 0.0
     discriminating_tokens = 0
     correct_predictions = 0
+    induction5_correct = 0
+    induction5_total = 0
 
     for batch in val_loader:
         if isinstance(batch, dict):
@@ -158,6 +161,20 @@ def evaluate_with_metrics(model, val_loader, device, task_type='copy'):
                 preds = disc_logits.argmax(dim=-1)
                 correct_predictions += (preds == disc_targets).sum().item()
 
+        # P[4]-only induction metric (single position, matches Transformer/minGRU)
+        if task_type == 'induction' and isinstance(batch, dict):
+            seq_lens = batch.get('seq_len')
+            if seq_lens is not None:
+                seq_lens = seq_lens.to(device)
+                B = logits.size(0)
+                tgt_pos = seq_lens - 2  # input_ids[seq_len-2] = P[3], label = P[4]
+                tgt_pos = tgt_pos.clamp(0, logits.size(1) - 1)
+                rows = torch.arange(B, device=device)
+                tgt_logits = logits[rows, tgt_pos]
+                tgt_labels = y[rows, tgt_pos]
+                induction5_correct += (tgt_logits.argmax(dim=-1) == tgt_labels).sum().item()
+                induction5_total += B
+
     results = {
         'overall_loss': total_loss / total_tokens if total_tokens > 0 else 0.0,
         'overall_ppl': math.exp(total_loss / total_tokens) if total_tokens > 0 and total_loss / total_tokens < 20 else float('inf')
@@ -168,6 +185,9 @@ def evaluate_with_metrics(model, val_loader, device, task_type='copy'):
         results['discriminating_ppl'] = math.exp(disc_avg_loss) if disc_avg_loss < 20 else float('inf')
         results['accuracy'] = correct_predictions / discriminating_tokens
 
+    if induction5_total > 0:
+        results['induction5_accuracy'] = induction5_correct / induction5_total
+
     return results
 
 
@@ -176,6 +196,8 @@ def train(config):
 
     # Set device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
     print(f"Using device: {device}")
 
     # Set seed
@@ -276,15 +298,18 @@ def train(config):
         dropout=config.get('dropout', 0.2)
     )
     model = model.to(device)
+    if hasattr(torch, 'compile'):
+        print("Compiling model with torch.compile...")
+        model = torch.compile(model)
 
     print(f"\nModel has {model.count_parameters():,} parameters")
 
-    # Optimizer
+    # Optimizer (standardized: betas=(0.9, 0.95), weight_decay=0.1 across all paradigms)
     optimizer = torch.optim.AdamW(
         model.parameters(),
         lr=config['learning_rate'],
         weight_decay=config['weight_decay'],
-        betas=(0.9, 0.999)
+        betas=(0.9, 0.95)
     )
 
     # Learning rate scheduler
@@ -362,7 +387,9 @@ def train(config):
         print(f"  Overall PPL: {final_results['overall_ppl']:.4f}")
         if 'discriminating_ppl' in final_results:
             print(f"  Discriminating PPL: {final_results['discriminating_ppl']:.4f}")
-            print(f"  Accuracy: {final_results['accuracy']:.4f}")
+            print(f"  Accuracy (all masked): {final_results['accuracy']:.4f}")
+        if 'induction5_accuracy' in final_results:
+            print(f"  Induction5 Accuracy (P[4] only): {final_results['induction5_accuracy']:.4f}")
     else:
         final_loss, final_ppl = evaluate(model, val_loader, device)
         final_results = {'overall_loss': final_loss, 'overall_ppl': final_ppl}
@@ -417,7 +444,7 @@ if __name__ == "__main__":
     parser.add_argument('--block_size', type=int, default=256,
                         help='Block size (sequence length)')
     parser.add_argument('--batch_size', type=int, default=64,
-                        help='Batch size')
+                        help='Batch size (64 for all lengths, standardized across paradigms)')
     parser.add_argument('--max_steps', type=int, default=5000,
                         help='Maximum training steps')
     parser.add_argument('--learning_rate', type=float, default=3e-4,
@@ -426,7 +453,7 @@ if __name__ == "__main__":
                         help='Warmup steps')
     parser.add_argument('--lr_decay_steps', type=int, default=None,
                         help='Total steps for LR cosine decay (defaults to max_steps)')
-    parser.add_argument('--weight_decay', type=float, default=0.01,
+    parser.add_argument('--weight_decay', type=float, default=0.1,
                         help='Weight decay')
     parser.add_argument('--grad_clip', type=float, default=1.0,
                         help='Gradient clipping norm')
@@ -440,7 +467,7 @@ if __name__ == "__main__":
                         help='Output directory for results')
     parser.add_argument('--log_interval', type=int, default=100,
                         help='Logging interval')
-    parser.add_argument('--eval_interval', type=int, default=500,
+    parser.add_argument('--eval_interval', type=int, default=250,
                         help='Evaluation interval')
     parser.add_argument('--dropout', type=float, default=0.2,
                         help='Dropout rate')

@@ -159,6 +159,8 @@ def train(cfg: TrainConfig, run_dir: Path | str, *, resume: bool = False) -> dic
 
     # 2) Device.
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
     logger.console_print(f"[train] device = {device}")
 
     # 3) Datasets.
@@ -180,6 +182,10 @@ def train(cfg: TrainConfig, run_dir: Path | str, *, resume: bool = False) -> dic
         name="minGRU",
     )
     logger.console_print(f"[train] minGRU params: {n_params:,}")
+
+    if hasattr(torch, "compile"):
+        logger.console_print("[train] compiling model with torch.compile...")
+        model = torch.compile(model)
 
     # 5) Optimizer + scheduler.
     optimizer = AdamW(
