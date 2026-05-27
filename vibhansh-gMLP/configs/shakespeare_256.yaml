@@ -1,0 +1,14 @@
+# TinyShakespeare at context length 256
+task: shakespeare
+block_size: 256
+batch_size: 64
+max_steps: 5000
+learning_rate: 0.0003
+warmup_steps: 200
+weight_decay: 0.01
+grad_clip: 1.0
+data_path: ../input.txt
+output_dir: ./results
+log_interval: 100
+eval_interval: 500
+save_checkpoint: true

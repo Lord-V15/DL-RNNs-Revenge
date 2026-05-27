@@ -1,0 +1,37 @@
+{
+  "task": "induction",
+  "block_size": 2048,
+  "seed": 42,
+  "model": "causal_gmlp",
+  "params": 927872,
+  "best_val_loss": 3.2346683940887453,
+  "best_val_ppl": 25.397948272502386,
+  "final_results": {
+    "overall_loss": 3.258903081893921,
+    "overall_ppl": 26.02097859962667,
+    "discriminating_ppl": 27.47083784483272,
+    "accuracy": 0.0378
+  },
+  "training_time_sec": 15363.634197235107,
+  "max_steps": 20000,
+  "config": {
+    "task": "induction",
+    "length": "long",
+    "block_size": 2048,
+    "batch_size": 32,
+    "max_steps": 20000,
+    "learning_rate": 0.0003,
+    "warmup_steps": 200,
+    "lr_decay_steps": 50000,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "seed": 42,
+    "data_path": "./data/tinyshakespeare/input.txt",
+    "data_dir": "./data",
+    "output_dir": "./results",
+    "log_interval": 100,
+    "eval_interval": 500,
+    "dropout": 0.05,
+    "save_checkpoint": false
+  }
+}

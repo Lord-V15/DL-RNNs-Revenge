@@ -1,0 +1,109 @@
+================================================================================
+Causal gMLP Training
+================================================================================
+{
+  "task": "copy",
+  "length": "long",
+  "block_size": 2048,
+  "batch_size": 32,
+  "max_steps": 5000,
+  "learning_rate": 0.0003,
+  "warmup_steps": 200,
+  "lr_decay_steps": null,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "seed": 42,
+  "data_path": "./data/tinyshakespeare/input.txt",
+  "data_dir": "./data",
+  "output_dir": "./results",
+  "log_interval": 100,
+  "eval_interval": 500,
+  "dropout": 0.05,
+  "save_checkpoint": false
+}
+================================================================================
+Using device: cuda
+Loading long-range copy task (long) from ./data...
+Train batches: 313, Val batches: 32
+Created Causal gMLP model:
+  Vocab size: 55
+  Sequence length: 2048
+  d_model: 128
+  d_ffn: 512
+  Layers: 4
+  Parameters: 931,456
+
+Model has 931,456 parameters
+
+Starting training for 5000 steps...
+Task: copy, Block size: 2048, Batch size: 32
+Step     0/5000 | Loss: 4.0277 | LR: 0.000001 | Time: 1.1s
+  Validation | Loss: 4.0260 | PPL: 56.0338
+Step   100/5000 | Loss: 3.3293 | LR: 0.000151 | Time: 82.9s
+Step   200/5000 | Loss: 3.2245 | LR: 0.000300 | Time: 159.5s
+Step   300/5000 | Loss: 3.2110 | LR: 0.000300 | Time: 236.2s
+Step   400/5000 | Loss: 3.2062 | LR: 0.000299 | Time: 312.3s
+Step   500/5000 | Loss: 3.2040 | LR: 0.000297 | Time: 388.7s
+  Validation | Loss: 3.2024 | PPL: 24.5910
+Step   600/5000 | Loss: 3.2031 | LR: 0.000295 | Time: 471.0s
+Step   700/5000 | Loss: 3.2023 | LR: 0.000293 | Time: 547.2s
+Step   800/5000 | Loss: 3.2017 | LR: 0.000290 | Time: 623.8s
+Step   900/5000 | Loss: 3.2014 | LR: 0.000286 | Time: 700.4s
+Step  1000/5000 | Loss: 3.2010 | LR: 0.000282 | Time: 776.6s
+  Validation | Loss: 3.2030 | PPL: 24.6060
+Step  1100/5000 | Loss: 3.2007 | LR: 0.000277 | Time: 858.8s
+Step  1200/5000 | Loss: 3.2005 | LR: 0.000272 | Time: 935.4s
+Step  1300/5000 | Loss: 3.2003 | LR: 0.000266 | Time: 1011.6s
+Step  1400/5000 | Loss: 3.2006 | LR: 0.000260 | Time: 1088.2s
+Step  1500/5000 | Loss: 3.2005 | LR: 0.000254 | Time: 1164.7s
+  Validation | Loss: 3.2011 | PPL: 24.5597
+Step  1600/5000 | Loss: 3.2001 | LR: 0.000247 | Time: 1246.6s
+Step  1700/5000 | Loss: 3.2000 | LR: 0.000240 | Time: 1323.1s
+Step  1800/5000 | Loss: 3.1999 | LR: 0.000232 | Time: 1399.7s
+Step  1900/5000 | Loss: 3.1996 | LR: 0.000225 | Time: 1475.9s
+Step  2000/5000 | Loss: 3.1995 | LR: 0.000217 | Time: 1552.4s
+  Validation | Loss: 3.1998 | PPL: 24.5284
+Step  2100/5000 | Loss: 3.1998 | LR: 0.000208 | Time: 1634.6s
+Step  2200/5000 | Loss: 3.1993 | LR: 0.000200 | Time: 1710.7s
+Step  2300/5000 | Loss: 3.1994 | LR: 0.000191 | Time: 1787.4s
+Step  2400/5000 | Loss: 3.1994 | LR: 0.000183 | Time: 1864.0s
+Step  2500/5000 | Loss: 3.1994 | LR: 0.000174 | Time: 1940.6s
+  Validation | Loss: 3.1999 | PPL: 24.5289
+Step  2600/5000 | Loss: 3.1993 | LR: 0.000165 | Time: 2022.6s
+Step  2700/5000 | Loss: 3.1991 | LR: 0.000156 | Time: 2099.1s
+Step  2800/5000 | Loss: 3.1993 | LR: 0.000147 | Time: 2175.8s
+Step  2900/5000 | Loss: 3.1984 | LR: 0.000139 | Time: 2251.9s
+Step  3000/5000 | Loss: 3.1981 | LR: 0.000130 | Time: 2328.4s
+  Validation | Loss: 3.2007 | PPL: 24.5503
+Step  3100/5000 | Loss: 3.1986 | LR: 0.000122 | Time: 2410.7s
+Step  3200/5000 | Loss: 3.1974 | LR: 0.000113 | Time: 2486.7s
+Step  3300/5000 | Loss: 3.1974 | LR: 0.000105 | Time: 2563.3s
+Step  3400/5000 | Loss: 3.1981 | LR: 0.000097 | Time: 2639.9s
+Step  3500/5000 | Loss: 3.1973 | LR: 0.000090 | Time: 2716.0s
+  Validation | Loss: 3.2018 | PPL: 24.5768
+Step  3600/5000 | Loss: 3.1974 | LR: 0.000083 | Time: 2798.3s
+Step  3700/5000 | Loss: 3.1980 | LR: 0.000076 | Time: 2874.8s
+Step  3800/5000 | Loss: 3.1967 | LR: 0.000069 | Time: 2951.0s
+Step  3900/5000 | Loss: 3.1968 | LR: 0.000063 | Time: 3027.5s
+Step  4000/5000 | Loss: 3.1971 | LR: 0.000058 | Time: 3104.0s
+  Validation | Loss: 3.2018 | PPL: 24.5764
+Step  4100/5000 | Loss: 3.1960 | LR: 0.000053 | Time: 3185.7s
+Step  4200/5000 | Loss: 3.1964 | LR: 0.000048 | Time: 3262.2s
+Step  4300/5000 | Loss: 3.1960 | LR: 0.000044 | Time: 3338.7s
+Step  4400/5000 | Loss: 3.1965 | LR: 0.000040 | Time: 3414.9s
+Step  4500/5000 | Loss: 3.1962 | LR: 0.000037 | Time: 3491.4s
+  Validation | Loss: 3.2028 | PPL: 24.6008
+Step  4600/5000 | Loss: 3.1961 | LR: 0.000035 | Time: 3573.4s
+Step  4700/5000 | Loss: 3.1956 | LR: 0.000033 | Time: 3649.5s
+Step  4800/5000 | Loss: 3.1955 | LR: 0.000031 | Time: 3726.1s
+Step  4900/5000 | Loss: 3.1960 | LR: 0.000030 | Time: 3802.6s
+Step  4999/5000 | Loss: 3.1961 | LR: 0.000030 | Time: 3878.4s
+  Validation | Loss: 3.2027 | PPL: 24.5977
+
+Final evaluation on full validation set...
+  Overall PPL: 24.5977
+  Discriminating PPL: 26.2522
+  Accuracy: 0.0400
+
+Results saved to ./results/gmlp_copy_long_42.json
+Total training time: 3889.7s (64.8 min)

@@ -1,0 +1,115 @@
+================================================================================
+Causal gMLP Training
+================================================================================
+{
+  "task": "shakespeare",
+  "length": "short",
+  "block_size": 2048,
+  "batch_size": 32,
+  "max_steps": 5000,
+  "learning_rate": 0.0003,
+  "warmup_steps": 200,
+  "lr_decay_steps": null,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "seed": 42,
+  "data_path": "./data/tinyshakespeare/input.txt",
+  "data_dir": "./data",
+  "output_dir": "./results",
+  "log_interval": 100,
+  "eval_interval": 500,
+  "dropout": 0.05,
+  "save_checkpoint": true
+}
+================================================================================
+Using device: cuda
+Vocabulary size: 65
+Train batches: 31307, Val batches: 3422
+Created Causal gMLP model:
+  Vocab size: 65
+  Sequence length: 2048
+  d_model: 128
+  d_ffn: 512
+  Layers: 4
+  Parameters: 932,736
+
+Model has 932,736 parameters
+
+Starting training for 5000 steps...
+Task: shakespeare, Block size: 2048, Batch size: 32
+Step     0/5000 | Loss: 4.1922 | LR: 0.000001 | Time: 1.1s
+  Validation | Loss: 4.1975 | PPL: 66.5211
+  Saved checkpoint to ./results/best_model.pt
+Step   100/5000 | Loss: 2.9495 | LR: 0.000151 | Time: 85.6s
+Step   200/5000 | Loss: 2.5564 | LR: 0.000300 | Time: 161.7s
+Step   300/5000 | Loss: 2.1791 | LR: 0.000300 | Time: 238.2s
+Step   400/5000 | Loss: 1.8597 | LR: 0.000299 | Time: 314.7s
+Step   500/5000 | Loss: 1.6852 | LR: 0.000297 | Time: 390.6s
+  Validation | Loss: 1.7547 | PPL: 5.7818
+  Saved checkpoint to ./results/best_model.pt
+Step   600/5000 | Loss: 1.5600 | LR: 0.000295 | Time: 475.4s
+Step   700/5000 | Loss: 1.5013 | LR: 0.000293 | Time: 551.2s
+Step   800/5000 | Loss: 1.4391 | LR: 0.000290 | Time: 627.1s
+Step   900/5000 | Loss: 1.3986 | LR: 0.000286 | Time: 703.1s
+Step  1000/5000 | Loss: 1.3650 | LR: 0.000282 | Time: 779.4s
+  Validation | Loss: 1.4279 | PPL: 4.1699
+  Saved checkpoint to ./results/best_model.pt
+Step  1100/5000 | Loss: 1.3695 | LR: 0.000277 | Time: 863.9s
+Step  1200/5000 | Loss: 1.3454 | LR: 0.000272 | Time: 939.7s
+Step  1300/5000 | Loss: 1.2924 | LR: 0.000266 | Time: 1015.8s
+Step  1400/5000 | Loss: 1.2931 | LR: 0.000260 | Time: 1091.9s
+Step  1500/5000 | Loss: 1.2847 | LR: 0.000254 | Time: 1168.4s
+  Validation | Loss: 1.3611 | PPL: 3.9003
+  Saved checkpoint to ./results/best_model.pt
+Step  1600/5000 | Loss: 1.2538 | LR: 0.000247 | Time: 1253.4s
+Step  1700/5000 | Loss: 1.2936 | LR: 0.000240 | Time: 1329.5s
+Step  1800/5000 | Loss: 1.2523 | LR: 0.000232 | Time: 1405.8s
+Step  1900/5000 | Loss: 1.2631 | LR: 0.000225 | Time: 1482.2s
+Step  2000/5000 | Loss: 1.2220 | LR: 0.000217 | Time: 1558.5s
+  Validation | Loss: 1.3338 | PPL: 3.7954
+  Saved checkpoint to ./results/best_model.pt
+Step  2100/5000 | Loss: 1.2490 | LR: 0.000208 | Time: 1643.2s
+Step  2200/5000 | Loss: 1.2241 | LR: 0.000200 | Time: 1719.0s
+Step  2300/5000 | Loss: 1.2250 | LR: 0.000191 | Time: 1794.9s
+Step  2400/5000 | Loss: 1.2132 | LR: 0.000183 | Time: 1870.5s
+Step  2500/5000 | Loss: 1.2194 | LR: 0.000174 | Time: 1946.1s
+  Validation | Loss: 1.3309 | PPL: 3.7844
+  Saved checkpoint to ./results/best_model.pt
+Step  2600/5000 | Loss: 1.2004 | LR: 0.000165 | Time: 2030.3s
+Step  2700/5000 | Loss: 1.2079 | LR: 0.000156 | Time: 2106.0s
+Step  2800/5000 | Loss: 1.1939 | LR: 0.000147 | Time: 2181.5s
+Step  2900/5000 | Loss: 1.1968 | LR: 0.000139 | Time: 2257.1s
+Step  3000/5000 | Loss: 1.2016 | LR: 0.000130 | Time: 2332.7s
+  Validation | Loss: 1.3213 | PPL: 3.7482
+  Saved checkpoint to ./results/best_model.pt
+Step  3100/5000 | Loss: 1.1832 | LR: 0.000122 | Time: 2417.1s
+Step  3200/5000 | Loss: 1.1828 | LR: 0.000113 | Time: 2492.8s
+Step  3300/5000 | Loss: 1.1652 | LR: 0.000105 | Time: 2568.4s
+Step  3400/5000 | Loss: 1.1792 | LR: 0.000097 | Time: 2644.0s
+Step  3500/5000 | Loss: 1.1868 | LR: 0.000090 | Time: 2719.6s
+  Validation | Loss: 1.3146 | PPL: 3.7234
+  Saved checkpoint to ./results/best_model.pt
+Step  3600/5000 | Loss: 1.1559 | LR: 0.000083 | Time: 2803.9s
+Step  3700/5000 | Loss: 1.1930 | LR: 0.000076 | Time: 2879.5s
+Step  3800/5000 | Loss: 1.1680 | LR: 0.000069 | Time: 2955.2s
+Step  3900/5000 | Loss: 1.1471 | LR: 0.000063 | Time: 3030.7s
+Step  4000/5000 | Loss: 1.1836 | LR: 0.000058 | Time: 3106.3s
+  Validation | Loss: 1.3189 | PPL: 3.7391
+Step  4100/5000 | Loss: 1.1762 | LR: 0.000053 | Time: 3190.6s
+Step  4200/5000 | Loss: 1.1693 | LR: 0.000048 | Time: 3266.1s
+Step  4300/5000 | Loss: 1.1567 | LR: 0.000044 | Time: 3341.8s
+Step  4400/5000 | Loss: 1.1813 | LR: 0.000040 | Time: 3417.3s
+Step  4500/5000 | Loss: 1.1436 | LR: 0.000037 | Time: 3492.4s
+  Validation | Loss: 1.3203 | PPL: 3.7444
+Step  4600/5000 | Loss: 1.1795 | LR: 0.000035 | Time: 3576.1s
+Step  4700/5000 | Loss: 1.1591 | LR: 0.000033 | Time: 3651.2s
+Step  4800/5000 | Loss: 1.1834 | LR: 0.000031 | Time: 3726.4s
+Step  4900/5000 | Loss: 1.1611 | LR: 0.000030 | Time: 3801.6s
+Step  4999/5000 | Loss: 1.1609 | LR: 0.000030 | Time: 3875.9s
+  Validation | Loss: 1.3190 | PPL: 3.7398
+
+Final evaluation on full validation set...
+  Loss: 1.5475 | PPL: 4.6995
+
+Results saved to ./results/gmlp_shakespeare_2048_42.json
+Total training time: 4461.2s (74.4 min)

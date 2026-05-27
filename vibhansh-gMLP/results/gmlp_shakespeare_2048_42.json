@@ -1,0 +1,35 @@
+{
+  "task": "shakespeare",
+  "block_size": 2048,
+  "seed": 42,
+  "model": "causal_gmlp",
+  "params": 932736,
+  "best_val_loss": 1.314630103111267,
+  "best_val_ppl": 3.723373466236172,
+  "final_results": {
+    "overall_loss": 1.5474543924662296,
+    "overall_ppl": 4.699491881094469
+  },
+  "training_time_sec": 4461.236173152924,
+  "max_steps": 5000,
+  "config": {
+    "task": "shakespeare",
+    "length": "short",
+    "block_size": 2048,
+    "batch_size": 32,
+    "max_steps": 5000,
+    "learning_rate": 0.0003,
+    "warmup_steps": 200,
+    "lr_decay_steps": null,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "seed": 42,
+    "data_path": "./data/tinyshakespeare/input.txt",
+    "data_dir": "./data",
+    "output_dir": "./results",
+    "log_interval": 100,
+    "eval_interval": 500,
+    "dropout": 0.05,
+    "save_checkpoint": true
+  }
+}
