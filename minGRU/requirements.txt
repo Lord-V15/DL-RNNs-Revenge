@@ -1,0 +1,10 @@
+# Core
+torch>=2.2
+numpy>=1.24
+
+# Plotting / aggregation (downstream of training; kept here so a single
+# requirements.txt covers the whole repo)
+matplotlib>=3.7
+
+# Progress / nicety
+tqdm>=4.65
