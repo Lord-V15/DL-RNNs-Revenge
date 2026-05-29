@@ -27,7 +27,6 @@
 
 \begin{document}
 \maketitle
-\vspace{-1cm}
 
 \begin{abstract}
 \citet{feng2024were} recently asked ``Were RNNs All We Needed?'', showing that a minimal gated recurrent unit (minGRU) matches Transformer performance on standard language modelling benchmarks with $O(T)$ complexity. We stress-test this claim by moving beyond language modelling into tasks requiring explicit algorithmic reasoning (verbatim sequence copying and induction head pattern completion) where architectural limitations are exposed rather than masked by statistical regularity. In a controlled setting (${\sim}$750--800K parameter target, identical optimiser and schedule), we compare minGRU against a Transformer with RoPE and RMSNorm, and a causal gMLP architecture we adapt as a third paradigm bridging fixed-parameter spatial mixing and learned attention. Our 27-experiment grid ($3$ models $\times$ $3$ tasks $\times$ $3$ sequence lengths) demonstrates that minGRU's input-only gating fundamentally prevents content-based retrieval at \emph{any} sequence length, while gMLP succeeds within its fixed spatial window but fails beyond it. The Transformer remains the only architecture capable of unbounded algorithmic reasoning within training budget. We additionally observe a sharp phase transition in Transformer copy learning, consistent with recent work on circuit formation.
@@ -273,13 +272,17 @@ minGRU Induction (all) & $\times$ & $\times$ (Acc $\approx$0.04) & \cmark \\
 gMLP Copy-Short & \checkmark & \checkmark\ (PPL=1.003) & \cmark \\
 gMLP Copy-Medium & $\times$ & $\times$ (PPL=26.4) & \cmark \\
 gMLP Induction-Long & $\times$ & $\times$ (Acc=0.044) & \cmark \\
-Transformer Copy-Long & $\times$ & $\times$ (PPL=26.1) & \cmark \\
+Transformer Copy-Long & \checkmark & $\times$ (PPL=26.1) & $\times$\textsuperscript{$*$} \\
 All Shakespeare & \checkmark & \checkmark & \cmark \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-All predictions were confirmed. One might argue this reflects confirmation bias, that we chose tasks designed to expose failures. We contend the opposite: if the claim is that RNNs are ``all we needed,'' then the architecture should succeed on tasks the Transformer handles routinely. Induction heads and copy are not exotic benchmarks; they are fundamental capabilities that emerge naturally in trained Transformers \citep{olsson2022context}. A model that claims to replace Transformers must handle Transformer-native tasks. That our predictions align with outcomes validates the architectural analysis, not our task selection.
+{\footnotesize \textsuperscript{$*$}Training budget limitation, not architectural (see Section 4.4).}
+
+All predictions were confirmed except one: the Transformer failed on copy-long despite having no architectural barrier. The phase transition evidence (Section 4.4) explains this: the attention mechanism can solve the task but requires more than 5K steps to discover the circuit at $T{=}2048$. This is a training budget limitation, not an architectural one, and reinforces rather than undermines the core finding: only attention \emph{can} solve these tasks, even if it sometimes needs more time to do so.
+
+One might argue our results reflect confirmation bias, that we chose tasks designed to expose failures. We contend the opposite: if the claim is that RNNs are ``all we needed,'' then the architecture should succeed on tasks the Transformer handles routinely. Induction heads and copy are not exotic benchmarks; they are fundamental capabilities that emerge naturally in trained Transformers \citep{olsson2022context}. A model that claims to replace Transformers must handle Transformer-native tasks.
 
 \subsection{Implications: The gMLP Diagnostic and Architecture Selection}
 
