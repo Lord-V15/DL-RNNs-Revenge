@@ -36,7 +36,7 @@ class LongRangeCopyDataset(Dataset):
         self.tokenizer = CharacterTokenizer(vocab)
 
         with open(self.file_path, 'r') as f:
-            self.sequences = [line.strip() for line in f.readlines()]
+            self.sequences = [ln for ln in f.read().split('\n') if ln]
 
     def __len__(self) -> int:
         return len(self.sequences)
@@ -44,7 +44,6 @@ class LongRangeCopyDataset(Dataset):
     def __getitem__(self, idx: int) -> Dict[str, torch.Tensor]:
         sequence = self.sequences[idx]
         tokens = self.tokenizer.encode(sequence)
-        # Capture true sequence length BEFORE padding/truncating
         seq_len = len(tokens)
 
         # Pad or truncate to block_size
@@ -89,12 +88,12 @@ class InductionDataset(Dataset):
         self.tokenizer = CharacterTokenizer(vocab)
 
         with open(self.file_path, 'r') as f:
-            self.sequences = [line.strip() for line in f.readlines()]
+            self.sequences = [ln for ln in f.read().split('\n') if ln]
 
         self.patterns = None
         if pattern_file:
             with open(pattern_file, 'r') as f:
-                self.patterns = [line.strip() for line in f.readlines()]
+                self.patterns = [ln for ln in f.read().split('\n') if ln]
 
     def __len__(self) -> int:
         return len(self.sequences)
