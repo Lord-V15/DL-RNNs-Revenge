@@ -135,6 +135,7 @@ print(f"params: {n_params:,}")
 
 optimizer = model.configure_optimizers(weight_decay, learning_rate, (beta1, beta2), device_type)
 
+compile_model = True
 if compile_model:
     print("compiling model...")
     model = torch.compile(model)

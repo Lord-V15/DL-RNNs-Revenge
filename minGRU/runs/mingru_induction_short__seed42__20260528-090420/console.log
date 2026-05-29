@@ -1,0 +1,488 @@
+[train] device = cuda
+[train] task=induction vocab_size=27 block_size=109 has_mask=True
+[train] minGRU params: 794,112
+[train] compiling model with torch.compile...
+[step    50] loss=3.2972 ema=3.2998 lr=7.65e-05
+[step   100] loss=3.2967 ema=3.2972 lr=1.51e-04
+[step   150] loss=3.2975 ema=3.2972 lr=2.26e-04
+[step   200] loss=3.2972 ema=3.2969 lr=3.00e-04
+[step   250] loss=3.2962 ema=3.2967 lr=3.00e-04
+[eval @ step 250] val_ppl=27.0207 masked_ppl=26.9054 masked_acc=0.0360 tps=74565 peak_mem=303MB
+[eval @ step 250] new best val loss: 3.2966
+[step   300] loss=3.2969 ema=3.2966 lr=3.00e-04
+[step   350] loss=3.2967 ema=3.2964 lr=3.00e-04
+[step   400] loss=3.2965 ema=3.2965 lr=3.00e-04
+[step   450] loss=3.2961 ema=3.2964 lr=3.00e-04
+[step   500] loss=3.2965 ema=3.2962 lr=3.00e-04
+[eval @ step 500] val_ppl=27.0070 masked_ppl=26.9376 masked_acc=0.0390 tps=113968 peak_mem=268MB
+[eval @ step 500] new best val loss: 3.2961
+[step   550] loss=3.2956 ema=3.2961 lr=3.00e-04
+[step   600] loss=3.2960 ema=3.2962 lr=3.00e-04
+[step   650] loss=3.2961 ema=3.2960 lr=3.00e-04
+[step   700] loss=3.2951 ema=3.2959 lr=3.00e-04
+[step   750] loss=3.2961 ema=3.2959 lr=3.00e-04
+[eval @ step 750] val_ppl=27.0002 masked_ppl=26.8661 masked_acc=0.0410 tps=535815 peak_mem=268MB
+[eval @ step 750] new best val loss: 3.2958
+[step   800] loss=3.2963 ema=3.2959 lr=3.00e-04
+[step   850] loss=3.2950 ema=3.2958 lr=3.00e-04
+[step   900] loss=3.2958 ema=3.2957 lr=3.00e-04
+[step   950] loss=3.2954 ema=3.2956 lr=3.00e-04
+[step  1000] loss=3.2968 ema=3.2957 lr=3.00e-04
+[eval @ step 1000] val_ppl=27.0069 masked_ppl=26.9272 masked_acc=0.0340 tps=544634 peak_mem=268MB
+[step  1050] loss=3.2958 ema=3.2956 lr=3.00e-04
+[step  1100] loss=3.2959 ema=3.2956 lr=3.00e-04
+[step  1150] loss=3.2952 ema=3.2955 lr=3.00e-04
+[step  1200] loss=3.2954 ema=3.2956 lr=3.00e-04
+[step  1250] loss=3.2948 ema=3.2955 lr=3.00e-04
+[eval @ step 1250] val_ppl=27.0149 masked_ppl=26.8962 masked_acc=0.0310 tps=556522 peak_mem=268MB
+[step  1300] loss=3.2948 ema=3.2954 lr=3.00e-04
+[step  1350] loss=3.2952 ema=3.2952 lr=3.00e-04
+[step  1400] loss=3.2956 ema=3.2952 lr=3.00e-04
+[step  1450] loss=3.2948 ema=3.2952 lr=3.00e-04
+[step  1500] loss=3.2953 ema=3.2953 lr=3.00e-04
+[eval @ step 1500] val_ppl=27.0133 masked_ppl=26.8314 masked_acc=0.0320 tps=547294 peak_mem=268MB
+[step  1550] loss=3.2946 ema=3.2950 lr=3.00e-04
+[step  1600] loss=3.2951 ema=3.2952 lr=2.99e-04
+[step  1650] loss=3.2969 ema=3.2954 lr=2.99e-04
+[step  1700] loss=3.2944 ema=3.2949 lr=2.99e-04
+[step  1750] loss=3.2950 ema=3.2948 lr=2.99e-04
+[eval @ step 1750] val_ppl=27.0186 masked_ppl=26.8933 masked_acc=0.0370 tps=527045 peak_mem=268MB
+[step  1800] loss=3.2951 ema=3.2949 lr=2.99e-04
+[step  1850] loss=3.2954 ema=3.2948 lr=2.99e-04
+[step  1900] loss=3.2950 ema=3.2948 lr=2.99e-04
+[step  1950] loss=3.2945 ema=3.2947 lr=2.99e-04
+[step  2000] loss=3.2953 ema=3.2947 lr=2.99e-04
+[eval @ step 2000] val_ppl=27.0163 masked_ppl=26.8519 masked_acc=0.0350 tps=549487 peak_mem=268MB
+[step  2050] loss=3.2960 ema=3.2948 lr=2.99e-04
+[step  2100] loss=3.2949 ema=3.2946 lr=2.99e-04
+[step  2150] loss=3.2946 ema=3.2946 lr=2.99e-04
+[step  2200] loss=3.2943 ema=3.2944 lr=2.99e-04
+[step  2250] loss=3.2937 ema=3.2942 lr=2.99e-04
+[eval @ step 2250] val_ppl=27.0281 masked_ppl=26.8270 masked_acc=0.0430 tps=555608 peak_mem=268MB
+[step  2300] loss=3.2948 ema=3.2942 lr=2.99e-04
+[step  2350] loss=3.2933 ema=3.2940 lr=2.99e-04
+[step  2400] loss=3.2936 ema=3.2943 lr=2.99e-04
+[step  2450] loss=3.2932 ema=3.2938 lr=2.99e-04
+[step  2500] loss=3.2923 ema=3.2937 lr=2.99e-04
+[eval @ step 2500] val_ppl=27.0487 masked_ppl=26.8307 masked_acc=0.0410 tps=551024 peak_mem=268MB
+[step  2550] loss=3.2942 ema=3.2938 lr=2.99e-04
+[step  2600] loss=3.2933 ema=3.2937 lr=2.98e-04
+[step  2650] loss=3.2940 ema=3.2933 lr=2.98e-04
+[step  2700] loss=3.2933 ema=3.2935 lr=2.98e-04
+[step  2750] loss=3.2938 ema=3.2934 lr=2.98e-04
+[eval @ step 2750] val_ppl=27.0515 masked_ppl=26.8224 masked_acc=0.0390 tps=523580 peak_mem=268MB
+[step  2800] loss=3.2936 ema=3.2933 lr=2.98e-04
+[step  2850] loss=3.2934 ema=3.2928 lr=2.98e-04
+[step  2900] loss=3.2923 ema=3.2929 lr=2.98e-04
+[step  2950] loss=3.2932 ema=3.2928 lr=2.98e-04
+[step  3000] loss=3.2922 ema=3.2927 lr=2.98e-04
+[eval @ step 3000] val_ppl=27.0673 masked_ppl=26.8267 masked_acc=0.0480 tps=548449 peak_mem=268MB
+[step  3050] loss=3.2927 ema=3.2924 lr=2.98e-04
+[step  3100] loss=3.2931 ema=3.2927 lr=2.98e-04
+[step  3150] loss=3.2936 ema=3.2923 lr=2.98e-04
+[step  3200] loss=3.2912 ema=3.2924 lr=2.98e-04
+[step  3250] loss=3.2944 ema=3.2922 lr=2.98e-04
+[eval @ step 3250] val_ppl=27.0919 masked_ppl=26.7988 masked_acc=0.0490 tps=553071 peak_mem=268MB
+[step  3300] loss=3.2922 ema=3.2920 lr=2.97e-04
+[step  3350] loss=3.2921 ema=3.2916 lr=2.97e-04
+[step  3400] loss=3.2930 ema=3.2917 lr=2.97e-04
+[step  3450] loss=3.2917 ema=3.2917 lr=2.97e-04
+[step  3500] loss=3.2911 ema=3.2914 lr=2.97e-04
+[eval @ step 3500] val_ppl=27.1020 masked_ppl=26.7880 masked_acc=0.0440 tps=549756 peak_mem=268MB
+[step  3550] loss=3.2896 ema=3.2910 lr=2.97e-04
+[step  3600] loss=3.2885 ema=3.2911 lr=2.97e-04
+[step  3650] loss=3.2893 ema=3.2910 lr=2.97e-04
+[step  3700] loss=3.2901 ema=3.2904 lr=2.97e-04
+[step  3750] loss=3.2907 ema=3.2904 lr=2.97e-04
+[eval @ step 3750] val_ppl=27.1427 masked_ppl=26.8875 masked_acc=0.0460 tps=527821 peak_mem=268MB
+[step  3800] loss=3.2914 ema=3.2901 lr=2.97e-04
+[step  3850] loss=3.2905 ema=3.2898 lr=2.96e-04
+[step  3900] loss=3.2890 ema=3.2900 lr=2.96e-04
+[step  3950] loss=3.2914 ema=3.2899 lr=2.96e-04
+[step  4000] loss=3.2887 ema=3.2897 lr=2.96e-04
+[eval @ step 4000] val_ppl=27.1391 masked_ppl=26.8544 masked_acc=0.0450 tps=553942 peak_mem=268MB
+[step  4050] loss=3.2906 ema=3.2898 lr=2.96e-04
+[step  4100] loss=3.2881 ema=3.2890 lr=2.96e-04
+[step  4150] loss=3.2883 ema=3.2892 lr=2.96e-04
+[step  4200] loss=3.2930 ema=3.2894 lr=2.96e-04
+[step  4250] loss=3.2882 ema=3.2883 lr=2.96e-04
+[eval @ step 4250] val_ppl=27.2204 masked_ppl=26.8386 masked_acc=0.0480 tps=546645 peak_mem=268MB
+[step  4300] loss=3.2876 ema=3.2883 lr=2.96e-04
+[step  4350] loss=3.2848 ema=3.2879 lr=2.95e-04
+[step  4400] loss=3.2895 ema=3.2883 lr=2.95e-04
+[step  4450] loss=3.2864 ema=3.2878 lr=2.95e-04
+[step  4500] loss=3.2893 ema=3.2876 lr=2.95e-04
+[eval @ step 4500] val_ppl=27.2104 masked_ppl=26.7873 masked_acc=0.0440 tps=557410 peak_mem=268MB
+[step  4550] loss=3.2854 ema=3.2869 lr=2.95e-04
+[step  4600] loss=3.2896 ema=3.2869 lr=2.95e-04
+[step  4650] loss=3.2878 ema=3.2876 lr=2.95e-04
+[step  4700] loss=3.2863 ema=3.2866 lr=2.95e-04
+[step  4750] loss=3.2860 ema=3.2867 lr=2.94e-04
+[eval @ step 4750] val_ppl=27.2154 masked_ppl=26.8114 masked_acc=0.0420 tps=536674 peak_mem=268MB
+[step  4800] loss=3.2859 ema=3.2865 lr=2.94e-04
+[step  4850] loss=3.2874 ema=3.2860 lr=2.94e-04
+[step  4900] loss=3.2864 ema=3.2851 lr=2.94e-04
+[step  4950] loss=3.2879 ema=3.2854 lr=2.94e-04
+[step  5000] loss=3.2856 ema=3.2850 lr=2.94e-04
+[eval @ step 5000] val_ppl=27.2937 masked_ppl=26.8645 masked_acc=0.0420 tps=554070 peak_mem=268MB
+[step  5050] loss=3.2846 ema=3.2850 lr=2.94e-04
+[step  5100] loss=3.2823 ema=3.2849 lr=2.94e-04
+[step  5150] loss=3.2861 ema=3.2841 lr=2.93e-04
+[step  5200] loss=3.2878 ema=3.2842 lr=2.93e-04
+[step  5250] loss=3.2837 ema=3.2841 lr=2.93e-04
+[eval @ step 5250] val_ppl=27.3302 masked_ppl=26.8316 masked_acc=0.0290 tps=550000 peak_mem=268MB
+[step  5300] loss=3.2816 ema=3.2829 lr=2.93e-04
+[step  5350] loss=3.2812 ema=3.2826 lr=2.93e-04
+[step  5400] loss=3.2831 ema=3.2832 lr=2.93e-04
+[step  5450] loss=3.2818 ema=3.2820 lr=2.93e-04
+[step  5500] loss=3.2796 ema=3.2824 lr=2.93e-04
+[eval @ step 5500] val_ppl=27.3774 masked_ppl=26.9845 masked_acc=0.0320 tps=554883 peak_mem=268MB
+[step  5550] loss=3.2794 ema=3.2818 lr=2.92e-04
+[step  5600] loss=3.2794 ema=3.2810 lr=2.92e-04
+[step  5650] loss=3.2807 ema=3.2812 lr=2.92e-04
+[step  5700] loss=3.2768 ema=3.2803 lr=2.92e-04
+[step  5750] loss=3.2821 ema=3.2803 lr=2.92e-04
+[eval @ step 5750] val_ppl=27.4219 masked_ppl=26.9941 masked_acc=0.0380 tps=532503 peak_mem=268MB
+[step  5800] loss=3.2818 ema=3.2807 lr=2.92e-04
+[step  5850] loss=3.2813 ema=3.2803 lr=2.92e-04
+[step  5900] loss=3.2775 ema=3.2801 lr=2.91e-04
+[step  5950] loss=3.2812 ema=3.2798 lr=2.91e-04
+[step  6000] loss=3.2827 ema=3.2799 lr=2.91e-04
+[eval @ step 6000] val_ppl=27.4006 masked_ppl=26.9147 masked_acc=0.0320 tps=549810 peak_mem=268MB
+[step  6050] loss=3.2802 ema=3.2781 lr=2.91e-04
+[step  6100] loss=3.2737 ema=3.2778 lr=2.91e-04
+[step  6150] loss=3.2769 ema=3.2776 lr=2.91e-04
+[step  6200] loss=3.2774 ema=3.2775 lr=2.90e-04
+[step  6250] loss=3.2786 ema=3.2771 lr=2.90e-04
+[eval @ step 6250] val_ppl=27.4968 masked_ppl=27.0945 masked_acc=0.0430 tps=566456 peak_mem=268MB
+[step  6300] loss=3.2739 ema=3.2760 lr=2.90e-04
+[step  6350] loss=3.2741 ema=3.2757 lr=2.90e-04
+[step  6400] loss=3.2746 ema=3.2761 lr=2.90e-04
+[step  6450] loss=3.2740 ema=3.2752 lr=2.90e-04
+[step  6500] loss=3.2740 ema=3.2749 lr=2.89e-04
+[eval @ step 6500] val_ppl=27.5056 masked_ppl=27.1308 masked_acc=0.0310 tps=567660 peak_mem=268MB
+[step  6550] loss=3.2735 ema=3.2746 lr=2.89e-04
+[step  6600] loss=3.2680 ema=3.2747 lr=2.89e-04
+[step  6650] loss=3.2751 ema=3.2738 lr=2.89e-04
+[step  6700] loss=3.2715 ema=3.2736 lr=2.89e-04
+[step  6750] loss=3.2722 ema=3.2741 lr=2.89e-04
+[eval @ step 6750] val_ppl=27.5941 masked_ppl=27.2013 masked_acc=0.0350 tps=524988 peak_mem=268MB
+[step  6800] loss=3.2777 ema=3.2737 lr=2.88e-04
+[step  6850] loss=3.2722 ema=3.2728 lr=2.88e-04
+[step  6900] loss=3.2686 ema=3.2722 lr=2.88e-04
+[step  6950] loss=3.2746 ema=3.2720 lr=2.88e-04
+[step  7000] loss=3.2698 ema=3.2718 lr=2.88e-04
+[eval @ step 7000] val_ppl=27.6654 masked_ppl=27.1814 masked_acc=0.0360 tps=547469 peak_mem=268MB
+[step  7050] loss=3.2667 ema=3.2704 lr=2.88e-04
+[step  7100] loss=3.2687 ema=3.2707 lr=2.87e-04
+[step  7150] loss=3.2763 ema=3.2712 lr=2.87e-04
+[step  7200] loss=3.2680 ema=3.2702 lr=2.87e-04
+[step  7250] loss=3.2705 ema=3.2690 lr=2.87e-04
+[eval @ step 7250] val_ppl=27.7580 masked_ppl=27.3408 masked_acc=0.0390 tps=559795 peak_mem=268MB
+[step  7300] loss=3.2700 ema=3.2695 lr=2.87e-04
+[step  7350] loss=3.2669 ema=3.2687 lr=2.86e-04
+[step  7400] loss=3.2701 ema=3.2685 lr=2.86e-04
+[step  7450] loss=3.2642 ema=3.2671 lr=2.86e-04
+[step  7500] loss=3.2687 ema=3.2670 lr=2.86e-04
+[eval @ step 7500] val_ppl=27.8328 masked_ppl=27.3968 masked_acc=0.0370 tps=553541 peak_mem=268MB
+[step  7550] loss=3.2684 ema=3.2675 lr=2.86e-04
+[step  7600] loss=3.2675 ema=3.2668 lr=2.86e-04
+[step  7650] loss=3.2572 ema=3.2660 lr=2.85e-04
+[step  7700] loss=3.2617 ema=3.2649 lr=2.85e-04
+[step  7750] loss=3.2650 ema=3.2651 lr=2.85e-04
+[eval @ step 7750] val_ppl=27.8531 masked_ppl=27.4563 masked_acc=0.0280 tps=537970 peak_mem=268MB
+[step  7800] loss=3.2656 ema=3.2649 lr=2.85e-04
+[step  7850] loss=3.2643 ema=3.2637 lr=2.85e-04
+[step  7900] loss=3.2573 ema=3.2643 lr=2.84e-04
+[step  7950] loss=3.2658 ema=3.2641 lr=2.84e-04
+[step  8000] loss=3.2653 ema=3.2639 lr=2.84e-04
+[eval @ step 8000] val_ppl=27.8854 masked_ppl=27.5347 masked_acc=0.0410 tps=551436 peak_mem=268MB
+[step  8050] loss=3.2653 ema=3.2626 lr=2.84e-04
+[step  8100] loss=3.2602 ema=3.2622 lr=2.84e-04
+[step  8150] loss=3.2624 ema=3.2624 lr=2.83e-04
+[step  8200] loss=3.2630 ema=3.2613 lr=2.83e-04
+[step  8250] loss=3.2650 ema=3.2604 lr=2.83e-04
+[eval @ step 8250] val_ppl=28.1475 masked_ppl=27.6446 masked_acc=0.0360 tps=553899 peak_mem=268MB
+[step  8300] loss=3.2564 ema=3.2604 lr=2.83e-04
+[step  8350] loss=3.2557 ema=3.2591 lr=2.83e-04
+[step  8400] loss=3.2578 ema=3.2590 lr=2.82e-04
+[step  8450] loss=3.2575 ema=3.2593 lr=2.82e-04
+[step  8500] loss=3.2571 ema=3.2591 lr=2.82e-04
+[eval @ step 8500] val_ppl=28.0353 masked_ppl=27.4333 masked_acc=0.0370 tps=551785 peak_mem=268MB
+[step  8550] loss=3.2548 ema=3.2586 lr=2.82e-04
+[step  8600] loss=3.2510 ema=3.2576 lr=2.81e-04
+[step  8650] loss=3.2548 ema=3.2571 lr=2.81e-04
+[step  8700] loss=3.2568 ema=3.2562 lr=2.81e-04
+[step  8750] loss=3.2627 ema=3.2569 lr=2.81e-04
+[eval @ step 8750] val_ppl=27.9829 masked_ppl=27.6545 masked_acc=0.0350 tps=527118 peak_mem=268MB
+[step  8800] loss=3.2569 ema=3.2557 lr=2.81e-04
+[step  8850] loss=3.2587 ema=3.2554 lr=2.80e-04
+[step  8900] loss=3.2538 ema=3.2548 lr=2.80e-04
+[step  8950] loss=3.2584 ema=3.2550 lr=2.80e-04
+[step  9000] loss=3.2600 ema=3.2545 lr=2.80e-04
+[eval @ step 9000] val_ppl=28.1437 masked_ppl=27.6676 masked_acc=0.0330 tps=558013 peak_mem=268MB
+[step  9050] loss=3.2504 ema=3.2542 lr=2.80e-04
+[step  9100] loss=3.2551 ema=3.2539 lr=2.79e-04
+[step  9150] loss=3.2508 ema=3.2538 lr=2.79e-04
+[step  9200] loss=3.2551 ema=3.2523 lr=2.79e-04
+[step  9250] loss=3.2524 ema=3.2519 lr=2.79e-04
+[eval @ step 9250] val_ppl=28.2399 masked_ppl=27.8920 masked_acc=0.0400 tps=553510 peak_mem=268MB
+[step  9300] loss=3.2500 ema=3.2523 lr=2.78e-04
+[step  9350] loss=3.2561 ema=3.2509 lr=2.78e-04
+[step  9400] loss=3.2471 ema=3.2500 lr=2.78e-04
+[step  9450] loss=3.2523 ema=3.2507 lr=2.78e-04
+[step  9500] loss=3.2506 ema=3.2490 lr=2.77e-04
+[eval @ step 9500] val_ppl=28.3042 masked_ppl=27.8565 masked_acc=0.0320 tps=551503 peak_mem=268MB
+[step  9550] loss=3.2497 ema=3.2475 lr=2.77e-04
+[step  9600] loss=3.2511 ema=3.2484 lr=2.77e-04
+[step  9650] loss=3.2562 ema=3.2481 lr=2.77e-04
+[step  9700] loss=3.2483 ema=3.2477 lr=2.76e-04
+[step  9750] loss=3.2516 ema=3.2458 lr=2.76e-04
+[eval @ step 9750] val_ppl=28.3710 masked_ppl=27.8069 masked_acc=0.0360 tps=543620 peak_mem=268MB
+[step  9800] loss=3.2442 ema=3.2457 lr=2.76e-04
+[step  9850] loss=3.2442 ema=3.2473 lr=2.76e-04
+[step  9900] loss=3.2532 ema=3.2459 lr=2.76e-04
+[step  9950] loss=3.2482 ema=3.2451 lr=2.75e-04
+[step 10000] loss=3.2464 ema=3.2453 lr=2.75e-04
+[eval @ step 10000] val_ppl=28.4664 masked_ppl=28.1471 masked_acc=0.0350 tps=549980 peak_mem=268MB
+[step 10050] loss=3.2387 ema=3.2447 lr=2.75e-04
+[step 10100] loss=3.2412 ema=3.2434 lr=2.75e-04
+[step 10150] loss=3.2465 ema=3.2430 lr=2.74e-04
+[step 10200] loss=3.2475 ema=3.2424 lr=2.74e-04
+[step 10250] loss=3.2408 ema=3.2421 lr=2.74e-04
+[eval @ step 10250] val_ppl=28.4580 masked_ppl=27.9777 masked_acc=0.0320 tps=553614 peak_mem=268MB
+[step 10300] loss=3.2350 ema=3.2402 lr=2.74e-04
+[step 10350] loss=3.2460 ema=3.2406 lr=2.73e-04
+[step 10400] loss=3.2374 ema=3.2404 lr=2.73e-04
+[step 10450] loss=3.2370 ema=3.2390 lr=2.73e-04
+[step 10500] loss=3.2327 ema=3.2396 lr=2.72e-04
+[eval @ step 10500] val_ppl=28.5587 masked_ppl=27.9786 masked_acc=0.0420 tps=557453 peak_mem=268MB
+[step 10550] loss=3.2353 ema=3.2400 lr=2.72e-04
+[step 10600] loss=3.2454 ema=3.2372 lr=2.72e-04
+[step 10650] loss=3.2387 ema=3.2366 lr=2.72e-04
+[step 10700] loss=3.2401 ema=3.2367 lr=2.71e-04
+[step 10750] loss=3.2295 ema=3.2352 lr=2.71e-04
+[eval @ step 10750] val_ppl=28.6894 masked_ppl=28.3455 masked_acc=0.0370 tps=533216 peak_mem=268MB
+[step 10800] loss=3.2345 ema=3.2355 lr=2.71e-04
+[step 10850] loss=3.2387 ema=3.2334 lr=2.71e-04
+[step 10900] loss=3.2282 ema=3.2328 lr=2.70e-04
+[step 10950] loss=3.2407 ema=3.2336 lr=2.70e-04
+[step 11000] loss=3.2232 ema=3.2321 lr=2.70e-04
+[eval @ step 11000] val_ppl=28.7179 masked_ppl=27.9908 masked_acc=0.0400 tps=556377 peak_mem=268MB
+[step 11050] loss=3.2397 ema=3.2327 lr=2.70e-04
+[step 11100] loss=3.2312 ema=3.2327 lr=2.69e-04
+[step 11150] loss=3.2348 ema=3.2332 lr=2.69e-04
+[step 11200] loss=3.2371 ema=3.2310 lr=2.69e-04
+[step 11250] loss=3.2218 ema=3.2308 lr=2.69e-04
+[eval @ step 11250] val_ppl=28.8312 masked_ppl=28.1850 masked_acc=0.0440 tps=549908 peak_mem=268MB
+[step 11300] loss=3.2303 ema=3.2298 lr=2.68e-04
+[step 11350] loss=3.2290 ema=3.2291 lr=2.68e-04
+[step 11400] loss=3.2297 ema=3.2276 lr=2.68e-04
+[step 11450] loss=3.2320 ema=3.2282 lr=2.67e-04
+[step 11500] loss=3.2263 ema=3.2271 lr=2.67e-04
+[eval @ step 11500] val_ppl=28.9155 masked_ppl=28.4252 masked_acc=0.0270 tps=554681 peak_mem=268MB
+[step 11550] loss=3.2343 ema=3.2268 lr=2.67e-04
+[step 11600] loss=3.2307 ema=3.2269 lr=2.67e-04
+[step 11650] loss=3.2229 ema=3.2264 lr=2.66e-04
+[step 11700] loss=3.2326 ema=3.2273 lr=2.66e-04
+[step 11750] loss=3.2160 ema=3.2251 lr=2.66e-04
+[eval @ step 11750] val_ppl=28.8983 masked_ppl=28.4996 masked_acc=0.0330 tps=529915 peak_mem=268MB
+[step 11800] loss=3.2224 ema=3.2247 lr=2.65e-04
+[step 11850] loss=3.2180 ema=3.2231 lr=2.65e-04
+[step 11900] loss=3.2366 ema=3.2227 lr=2.65e-04
+[step 11950] loss=3.2162 ema=3.2224 lr=2.65e-04
+[step 12000] loss=3.2237 ema=3.2228 lr=2.64e-04
+[eval @ step 12000] val_ppl=29.0235 masked_ppl=28.5733 masked_acc=0.0390 tps=548149 peak_mem=268MB
+[step 12050] loss=3.2198 ema=3.2208 lr=2.64e-04
+[step 12100] loss=3.2265 ema=3.2226 lr=2.64e-04
+[step 12150] loss=3.2275 ema=3.2199 lr=2.63e-04
+[step 12200] loss=3.2218 ema=3.2183 lr=2.63e-04
+[step 12250] loss=3.2193 ema=3.2200 lr=2.63e-04
+[eval @ step 12250] val_ppl=29.0014 masked_ppl=28.9190 masked_acc=0.0380 tps=550040 peak_mem=268MB
+[step 12300] loss=3.2150 ema=3.2192 lr=2.63e-04
+[step 12350] loss=3.2125 ema=3.2181 lr=2.62e-04
+[step 12400] loss=3.2211 ema=3.2179 lr=2.62e-04
+[step 12450] loss=3.2185 ema=3.2176 lr=2.62e-04
+[step 12500] loss=3.2023 ema=3.2148 lr=2.61e-04
+[eval @ step 12500] val_ppl=29.2094 masked_ppl=28.8001 masked_acc=0.0420 tps=551034 peak_mem=268MB
+[step 12550] loss=3.2212 ema=3.2155 lr=2.61e-04
+[step 12600] loss=3.2137 ema=3.2155 lr=2.61e-04
+[step 12650] loss=3.2151 ema=3.2134 lr=2.60e-04
+[step 12700] loss=3.2185 ema=3.2154 lr=2.60e-04
+[step 12750] loss=3.2094 ema=3.2131 lr=2.60e-04
+[eval @ step 12750] val_ppl=29.2380 masked_ppl=28.5242 masked_acc=0.0410 tps=547825 peak_mem=268MB
+[step 12800] loss=3.2116 ema=3.2115 lr=2.60e-04
+[step 12850] loss=3.2009 ema=3.2101 lr=2.59e-04
+[step 12900] loss=3.2013 ema=3.2118 lr=2.59e-04
+[step 12950] loss=3.2174 ema=3.2114 lr=2.59e-04
+[step 13000] loss=3.2136 ema=3.2086 lr=2.58e-04
+[eval @ step 13000] val_ppl=29.4543 masked_ppl=29.0701 masked_acc=0.0340 tps=550773 peak_mem=268MB
+[step 13050] loss=3.2008 ema=3.2092 lr=2.58e-04
+[step 13100] loss=3.2169 ema=3.2103 lr=2.58e-04
+[step 13150] loss=3.2050 ema=3.2073 lr=2.57e-04
+[step 13200] loss=3.2119 ema=3.2063 lr=2.57e-04
+[step 13250] loss=3.2022 ema=3.2053 lr=2.57e-04
+[eval @ step 13250] val_ppl=29.5013 masked_ppl=29.1133 masked_acc=0.0370 tps=554300 peak_mem=268MB
+[step 13300] loss=3.2038 ema=3.2047 lr=2.56e-04
+[step 13350] loss=3.2062 ema=3.2062 lr=2.56e-04
+[step 13400] loss=3.1999 ema=3.2046 lr=2.56e-04
+[step 13450] loss=3.2163 ema=3.2054 lr=2.56e-04
+[step 13500] loss=3.2026 ema=3.2036 lr=2.55e-04
+[eval @ step 13500] val_ppl=29.4561 masked_ppl=28.6356 masked_acc=0.0420 tps=559817 peak_mem=268MB
+[step 13550] loss=3.2025 ema=3.2029 lr=2.55e-04
+[step 13600] loss=3.2033 ema=3.2029 lr=2.55e-04
+[step 13650] loss=3.2076 ema=3.2022 lr=2.54e-04
+[step 13700] loss=3.1878 ema=3.2005 lr=2.54e-04
+[step 13750] loss=3.2102 ema=3.2036 lr=2.54e-04
+[eval @ step 13750] val_ppl=29.6260 masked_ppl=28.9057 masked_acc=0.0340 tps=548301 peak_mem=268MB
+[step 13800] loss=3.2096 ema=3.2020 lr=2.53e-04
+[step 13850] loss=3.1991 ema=3.1988 lr=2.53e-04
+[step 13900] loss=3.2072 ema=3.2009 lr=2.53e-04
+[step 13950] loss=3.2083 ema=3.1998 lr=2.52e-04
+[step 14000] loss=3.1950 ema=3.1992 lr=2.52e-04
+[eval @ step 14000] val_ppl=29.6450 masked_ppl=29.2425 masked_acc=0.0410 tps=564097 peak_mem=268MB
+[step 14050] loss=3.1936 ema=3.1969 lr=2.52e-04
+[step 14100] loss=3.2051 ema=3.1950 lr=2.51e-04
+[step 14150] loss=3.2052 ema=3.1968 lr=2.51e-04
+[step 14200] loss=3.1915 ema=3.1951 lr=2.51e-04
+[step 14250] loss=3.2012 ema=3.1964 lr=2.50e-04
+[eval @ step 14250] val_ppl=29.7432 masked_ppl=28.9645 masked_acc=0.0380 tps=563374 peak_mem=268MB
+[step 14300] loss=3.2000 ema=3.1957 lr=2.50e-04
+[step 14350] loss=3.1939 ema=3.1937 lr=2.50e-04
+[step 14400] loss=3.1801 ema=3.1924 lr=2.49e-04
+[step 14450] loss=3.1995 ema=3.1918 lr=2.49e-04
+[step 14500] loss=3.1975 ema=3.1925 lr=2.49e-04
+[eval @ step 14500] val_ppl=29.8275 masked_ppl=29.1322 masked_acc=0.0520 tps=553128 peak_mem=268MB
+[step 14550] loss=3.1893 ema=3.1909 lr=2.48e-04
+[step 14600] loss=3.1934 ema=3.1907 lr=2.48e-04
+[step 14650] loss=3.1918 ema=3.1885 lr=2.48e-04
+[step 14700] loss=3.1829 ema=3.1887 lr=2.47e-04
+[step 14750] loss=3.1925 ema=3.1884 lr=2.47e-04
+[eval @ step 14750] val_ppl=30.1713 masked_ppl=29.5958 masked_acc=0.0370 tps=529422 peak_mem=268MB
+[step 14800] loss=3.1984 ema=3.1887 lr=2.47e-04
+[step 14850] loss=3.1882 ema=3.1886 lr=2.46e-04
+[step 14900] loss=3.1826 ema=3.1877 lr=2.46e-04
+[step 14950] loss=3.1827 ema=3.1868 lr=2.46e-04
+[step 15000] loss=3.1823 ema=3.1855 lr=2.45e-04
+[eval @ step 15000] val_ppl=30.0636 masked_ppl=29.5283 masked_acc=0.0370 tps=560694 peak_mem=268MB
+[step 15050] loss=3.1817 ema=3.1858 lr=2.45e-04
+[step 15100] loss=3.1947 ema=3.1837 lr=2.45e-04
+[step 15150] loss=3.1879 ema=3.1852 lr=2.44e-04
+[step 15200] loss=3.1928 ema=3.1842 lr=2.44e-04
+[step 15250] loss=3.1780 ema=3.1822 lr=2.44e-04
+[eval @ step 15250] val_ppl=30.1819 masked_ppl=29.5869 masked_acc=0.0460 tps=552829 peak_mem=268MB
+[step 15300] loss=3.1792 ema=3.1808 lr=2.43e-04
+[step 15350] loss=3.1726 ema=3.1828 lr=2.43e-04
+[step 15400] loss=3.1742 ema=3.1785 lr=2.43e-04
+[step 15450] loss=3.1753 ema=3.1801 lr=2.42e-04
+[step 15500] loss=3.1702 ema=3.1782 lr=2.42e-04
+[eval @ step 15500] val_ppl=30.2588 masked_ppl=29.8201 masked_acc=0.0370 tps=553857 peak_mem=268MB
+[step 15550] loss=3.1701 ema=3.1772 lr=2.41e-04
+[step 15600] loss=3.1760 ema=3.1792 lr=2.41e-04
+[step 15650] loss=3.1722 ema=3.1778 lr=2.41e-04
+[step 15700] loss=3.1859 ema=3.1765 lr=2.40e-04
+[step 15750] loss=3.1736 ema=3.1777 lr=2.40e-04
+[eval @ step 15750] val_ppl=30.1093 masked_ppl=29.8576 masked_acc=0.0460 tps=540987 peak_mem=268MB
+[step 15800] loss=3.1723 ema=3.1753 lr=2.40e-04
+[step 15850] loss=3.1852 ema=3.1752 lr=2.39e-04
+[step 15900] loss=3.1806 ema=3.1750 lr=2.39e-04
+[step 15950] loss=3.1582 ema=3.1728 lr=2.39e-04
+[step 16000] loss=3.1784 ema=3.1741 lr=2.38e-04
+[eval @ step 16000] val_ppl=30.4199 masked_ppl=30.0488 masked_acc=0.0440 tps=563360 peak_mem=268MB
+[step 16050] loss=3.1813 ema=3.1726 lr=2.38e-04
+[step 16100] loss=3.1787 ema=3.1739 lr=2.38e-04
+[step 16150] loss=3.1764 ema=3.1724 lr=2.37e-04
+[step 16200] loss=3.1760 ema=3.1706 lr=2.37e-04
+[step 16250] loss=3.1680 ema=3.1712 lr=2.37e-04
+[eval @ step 16250] val_ppl=30.4587 masked_ppl=30.2335 masked_acc=0.0380 tps=569340 peak_mem=268MB
+[step 16300] loss=3.1754 ema=3.1703 lr=2.36e-04
+[step 16350] loss=3.1703 ema=3.1710 lr=2.36e-04
+[step 16400] loss=3.1709 ema=3.1667 lr=2.35e-04
+[step 16450] loss=3.1705 ema=3.1680 lr=2.35e-04
+[step 16500] loss=3.1818 ema=3.1691 lr=2.35e-04
+[eval @ step 16500] val_ppl=30.6525 masked_ppl=30.3852 masked_acc=0.0410 tps=559621 peak_mem=268MB
+[step 16550] loss=3.1614 ema=3.1689 lr=2.34e-04
+[step 16600] loss=3.1724 ema=3.1678 lr=2.34e-04
+[step 16650] loss=3.1586 ema=3.1679 lr=2.34e-04
+[step 16700] loss=3.1618 ema=3.1677 lr=2.33e-04
+[step 16750] loss=3.1592 ema=3.1659 lr=2.33e-04
+[eval @ step 16750] val_ppl=30.8635 masked_ppl=30.3863 masked_acc=0.0400 tps=527027 peak_mem=268MB
+[step 16800] loss=3.1626 ema=3.1661 lr=2.32e-04
+[step 16850] loss=3.1651 ema=3.1657 lr=2.32e-04
+[step 16900] loss=3.1629 ema=3.1619 lr=2.32e-04
+[step 16950] loss=3.1570 ema=3.1641 lr=2.31e-04
+[step 17000] loss=3.1636 ema=3.1615 lr=2.31e-04
+[eval @ step 17000] val_ppl=30.8235 masked_ppl=30.3083 masked_acc=0.0410 tps=553484 peak_mem=268MB
+[step 17050] loss=3.1587 ema=3.1614 lr=2.31e-04
+[step 17100] loss=3.1664 ema=3.1605 lr=2.30e-04
+[step 17150] loss=3.1705 ema=3.1589 lr=2.30e-04
+[step 17200] loss=3.1553 ema=3.1574 lr=2.30e-04
+[step 17250] loss=3.1605 ema=3.1615 lr=2.29e-04
+[eval @ step 17250] val_ppl=30.8378 masked_ppl=30.2298 masked_acc=0.0420 tps=549776 peak_mem=268MB
+[step 17300] loss=3.1587 ema=3.1586 lr=2.29e-04
+[step 17350] loss=3.1644 ema=3.1590 lr=2.28e-04
+[step 17400] loss=3.1476 ema=3.1575 lr=2.28e-04
+[step 17450] loss=3.1598 ema=3.1576 lr=2.28e-04
+[step 17500] loss=3.1487 ema=3.1586 lr=2.27e-04
+[eval @ step 17500] val_ppl=31.0683 masked_ppl=30.6161 masked_acc=0.0400 tps=560039 peak_mem=268MB
+[step 17550] loss=3.1382 ema=3.1568 lr=2.27e-04
+[step 17600] loss=3.1619 ema=3.1566 lr=2.27e-04
+[step 17650] loss=3.1423 ema=3.1556 lr=2.26e-04
+[step 17700] loss=3.1580 ema=3.1565 lr=2.26e-04
+[step 17750] loss=3.1476 ema=3.1555 lr=2.25e-04
+[eval @ step 17750] val_ppl=30.9790 masked_ppl=30.6311 masked_acc=0.0420 tps=531782 peak_mem=268MB
+[step 17800] loss=3.1547 ema=3.1540 lr=2.25e-04
+[step 17850] loss=3.1539 ema=3.1522 lr=2.25e-04
+[step 17900] loss=3.1365 ema=3.1497 lr=2.24e-04
+[step 17950] loss=3.1550 ema=3.1508 lr=2.24e-04
+[step 18000] loss=3.1564 ema=3.1518 lr=2.23e-04
+[eval @ step 18000] val_ppl=31.0189 masked_ppl=30.4471 masked_acc=0.0380 tps=556955 peak_mem=268MB
+[step 18050] loss=3.1421 ema=3.1505 lr=2.23e-04
+[step 18100] loss=3.1613 ema=3.1487 lr=2.23e-04
+[step 18150] loss=3.1435 ema=3.1483 lr=2.22e-04
+[step 18200] loss=3.1334 ema=3.1480 lr=2.22e-04
+[step 18250] loss=3.1447 ema=3.1508 lr=2.22e-04
+[eval @ step 18250] val_ppl=31.0661 masked_ppl=30.7730 masked_acc=0.0390 tps=552735 peak_mem=268MB
+[step 18300] loss=3.1479 ema=3.1469 lr=2.21e-04
+[step 18350] loss=3.1346 ema=3.1482 lr=2.21e-04
+[step 18400] loss=3.1317 ema=3.1460 lr=2.20e-04
+[step 18450] loss=3.1401 ema=3.1458 lr=2.20e-04
+[step 18500] loss=3.1345 ema=3.1453 lr=2.20e-04
+[eval @ step 18500] val_ppl=31.2230 masked_ppl=30.8219 masked_acc=0.0360 tps=556267 peak_mem=268MB
+[step 18550] loss=3.1243 ema=3.1458 lr=2.19e-04
+[step 18600] loss=3.1420 ema=3.1434 lr=2.19e-04
+[step 18650] loss=3.1438 ema=3.1455 lr=2.18e-04
+[step 18700] loss=3.1448 ema=3.1451 lr=2.18e-04
+[step 18750] loss=3.1467 ema=3.1424 lr=2.18e-04
+[eval @ step 18750] val_ppl=31.5903 masked_ppl=31.4176 masked_acc=0.0320 tps=526744 peak_mem=268MB
+[step 18800] loss=3.1474 ema=3.1434 lr=2.17e-04
+[step 18850] loss=3.1358 ema=3.1427 lr=2.17e-04
+[step 18900] loss=3.1513 ema=3.1409 lr=2.16e-04
+[step 18950] loss=3.1381 ema=3.1399 lr=2.16e-04
+[step 19000] loss=3.1419 ema=3.1426 lr=2.16e-04
+[eval @ step 19000] val_ppl=31.3356 masked_ppl=31.1775 masked_acc=0.0360 tps=553368 peak_mem=268MB
+[step 19050] loss=3.1272 ema=3.1407 lr=2.15e-04
+[step 19100] loss=3.1393 ema=3.1404 lr=2.15e-04
+[step 19150] loss=3.1480 ema=3.1433 lr=2.14e-04
+[step 19200] loss=3.1439 ema=3.1400 lr=2.14e-04
+[step 19250] loss=3.1134 ema=3.1366 lr=2.14e-04
+[eval @ step 19250] val_ppl=31.7015 masked_ppl=31.1993 masked_acc=0.0450 tps=571428 peak_mem=268MB
+[step 19300] loss=3.1261 ema=3.1376 lr=2.13e-04
+[step 19350] loss=3.1456 ema=3.1387 lr=2.13e-04
+[step 19400] loss=3.1417 ema=3.1382 lr=2.13e-04
+[step 19450] loss=3.1339 ema=3.1379 lr=2.12e-04
+[step 19500] loss=3.1455 ema=3.1380 lr=2.12e-04
+[eval @ step 19500] val_ppl=31.3321 masked_ppl=31.0051 masked_acc=0.0450 tps=563600 peak_mem=268MB
+[step 19550] loss=3.1457 ema=3.1351 lr=2.11e-04
+[step 19600] loss=3.1176 ema=3.1343 lr=2.11e-04
+[step 19650] loss=3.1254 ema=3.1328 lr=2.11e-04
+[step 19700] loss=3.1464 ema=3.1354 lr=2.10e-04
+[step 19750] loss=3.1192 ema=3.1339 lr=2.10e-04
+[eval @ step 19750] val_ppl=31.5423 masked_ppl=31.3392 masked_acc=0.0440 tps=529596 peak_mem=268MB
+[step 19800] loss=3.1423 ema=3.1339 lr=2.09e-04
+[step 19850] loss=3.1193 ema=3.1320 lr=2.09e-04
+[step 19900] loss=3.1457 ema=3.1355 lr=2.08e-04
+[step 19950] loss=3.1295 ema=3.1337 lr=2.08e-04
+[step 20000] loss=3.1189 ema=3.1334 lr=2.08e-04
+[eval @ step 20000] val_ppl=31.7339 masked_ppl=31.6535 masked_acc=0.0480 tps=558929 peak_mem=268MB
+[train] DONE {'best_val_loss': 3.2958431855647934, 'best_val_ppl': 27.000170628671686, 'total_steps': 20000, 'wall_clock_seconds': 286.54, 'n_parameters': 794112}
