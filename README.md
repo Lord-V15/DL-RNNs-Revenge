@@ -1,166 +1,184 @@
-## RNN's Revenge: Comparing Recurrent, Attentional, and MLP-Mixing Paradigms
+# Transformer's Revenge: Stress-Testing minGRU's Claims Against Attention on Algorithmic Reasoning Tasks
 
-  ▎ COMP6242 Deep Learning · Australian National University · Semester 1, 2026
-  ▎ Mayukh Das, Vibhansh Gupta, Daniel, Adam
+**COMP6242 Deep Learning · Semester 1, 2026**
 
-  Overview
+Mayukh Das (u7965027) · Vibhansh Gupta (u7861976) · Daniel Vaz (u7990536) · Adam Clark (u7437561)
 
-  Feng et al. (2024) argue that recurrent neural networks were displaced from sequence modelling not
-  because of inadequate modelling power but because they could not be trained in parallel. Their
-  minGRU, a minimal recurrent model trainable via prefix scan, matches Transformer perplexity on
-  TinyShakespeare.
+---
 
-  We test this claim and ask: where does a third paradigm — MLP-mixing — fit alongside recurrence and
-  attention?
+## Abstract
 
-  We compare three token-mixing paradigms at a matched parameter budget of ~750K:
-  - minGRU (Feng et al. 2024) — recurrent
-  - Transformer (decoder-only, RoPE + RMSNorm) — attention-based
-  - Causal gMLP — MLP-mixing with causally-masked Spatial Gating Unit
+Feng et al. (2024) claim that minGRU, a minimal recurrent unit trainable via parallel log-space scans, matches Transformer performance on language modelling with O(T) complexity. We stress-test this claim by moving beyond statistical language modelling into tasks requiring explicit algorithmic reasoning: verbatim sequence copying and induction head pattern completion.
 
-  All three are evaluated on three autoregressive character-level tasks, each at three sequence
-  lengths:
-  1. TinyShakespeare — natural English text
-  2. Long-range copy — synthetic retrieval requiring exact recall after long distractor spans
-  3. Induction — synthetic in-context pattern continuation (Olsson et al. 2022)
+In a controlled 27-experiment grid (3 models × 3 tasks × 3 sequence lengths, ~750-800K parameter target), we show that the claim holds for language modelling but **categorically fails** for algorithmic reasoning. minGRU's input-only gating cannot perform content-based retrieval at any sequence length. A causal gMLP, adapted as a third paradigm, succeeds within its fixed 256-token window but fails beyond it. Only the Transformer's content-dependent attention enables unbounded algorithmic reasoning.
 
-  Research Question
+---
 
-  How do recurrence, attention, and MLP-mixing compare on autoregressive character-level language
-  modelling at matched parameters, when tested on tasks designed to discriminate between paradigm
-  strengths and across varying sequence lengths?
+## Motivation
 
-  At ~750K parameters and equivalent training budgets, do these paradigms produce different perplexity
-  on tasks emphasizing different capabilities? How does the gap change as sequence length grows from
-  short (~128 chars) to long (~2048 chars)?
+Language modelling benchmarks test statistical pattern learning from local context. But many real-world capabilities (retrieval, reasoning, in-context learning) require **content-based information routing**: using the current input as a query to selectively access past information. We designed tasks that specifically isolate this capability to determine where minGRU's architectural limitations become fatal.
 
-  Hypotheses
-<img width="1094" height="437" alt="image" src="https://github.com/user-attachments/assets/c23da51c-890d-4c90-a735-8a9c52f7beec" />
+The key architectural insight: minGRU's gate g_t = σ(W·x_t) depends only on the current input, not on the hidden state or any future query. This means the model must decide **at write-time** what to store, without knowledge of what will be needed later. For tasks requiring **read-time** decisions (like induction heads), this is a structural impossibility.
 
+---
 
-  Contributions
+## Models
 
-  1. Reproduction — Verified minGRU matches Transformer on TinyShakespeare: PPL 4.63 ± 0.03 (paper
-  reports ≈4.70) ✅
-  2. Paradigm comparison — First head-to-head comparison of recurrence, attention, and MLP-mixing at
-  matched parameters on these three tasks
-  3. Causal gMLP — Autoregressive adaptation of gMLP (Liu et al. 2021) via causally-masked Spatial
-  Gating Unit
+All models share 4 layers, hidden dimension 128, and approximately matched parameters:
 
-  Models
-<img width="1109" height="290" alt="image" src="https://github.com/user-attachments/assets/091d705a-9e1a-4b26-bca7-f13428e4c4b0" />
+| | Transformer | gMLP | minGRU |
+|---|---|---|---|
+| **Parameters** | ~795K | ~508-933K* | ~737K |
+| **Attention/Window** | 4 heads | w=256 | -- |
+| **FFN** | GELU, 4×d | GELU, d_ffn=512 | GELU, 4.5×d |
+| **Normalisation** | RMSNorm | LayerNorm | RMSNorm |
+| **Position encoding** | RoPE | Learned | Implicit (recurrence) |
+| **Additional** | bias=False | -- | Conv1d (k=4) |
 
+*gMLP parameter count varies with sequence length due to T×T spatial weight matrix.
 
-  Shared training: AdamW, lr 3e-4 → 3e-5 cosine, batch 64, 5K steps, gradient clip 1.0, dropout 0.2,
-  bf16
+**Transformer**: nanoGPT enhanced with LLaMA-recipe modifications (RoPE, RMSNorm, no bias). GELU activation (SwiGLU introduced instability at this scale in prior coursework).
 
-  Tasks & Datasets
+**minGRU**: Direct reproduction of Feng et al. Appendix C.2 language modelling recipe. Each block: causal Conv1d (k=4) → minGRU cell → MLP, with pre-norm RMSNorm and residual connections. Parallel training via log-space cumulative sums.
 
-  Task 4.1: TinyShakespeare (Natural Language Baseline)
+**Causal gMLP**: Our adaptation of the originally bidirectional gMLP (Liu et al. 2021) for autoregressive generation. Uses a causally-masked, windowed Spatial Gating Unit (SGU) with fixed spatial weights W_s ∈ R^(T×T), banded to window size w=256.
 
-  Standard character-level LM on 1.1M characters (Karpathy 2022)
-  - Lengths: 256, 1024, 2048 context
-  - Metric: Best validation perplexity
-  - Vocabulary: ~65 unique characters
+---
 
-  Task 4.2: Long-Range Copy (Retrieval Over Distance)
+## Tasks
 
-  Format: key: XXXXX | <N distractors> | recall: XXXXX
+### Task 1: TinyShakespeare (Language Modelling Baseline)
+Character-level language modelling on 1.1M-character Shakespeare corpus (65-char vocab). 90/10 train/val split. This directly mirrors Feng et al.'s benchmark. **Metric**: validation perplexity.
 
-  - Lengths: 100/500/2000 distractor chars → ~115/~515/~2015 total chars
-  - Vocabulary: 55 chars (26 lower + 26 upper + space + : + |)
-  - Key metric: PPL at the 5 recall positions (isolates retrieval capability)
-  - Dataset: 10K train + 1K val per length = 33K sequences
+### Task 2: Long-Range Copy (Verbatim Retrieval)
+Format: `[content][separator][content]` — model must reproduce the first half verbatim after the separator. Content drawn from 26-character alphabet.
+- Short: T=128 (64 tokens to memorise)
+- Medium: T=528 (256 tokens)
+- Long: T=2048 (1024 tokens)
 
-  Task 4.3: Induction (In-Context Pattern Continuation)
+No statistical shortcut exists. **Metric**: recall perplexity (computed only on recalled portion; 1.0 = perfect, ~26 = random).
 
-  Format: <M random> <5-char pattern> <M random> <pattern[:4]>
+### Task 3: Induction Heads (Content-Based Retrieval)
+Sequences containing repeated bigram patterns: after observing [A][B] earlier, model must predict B when A reappears. 5 induction patterns per sequence.
+- Short: T=128
+- Medium: T=256
+- Long: T=2048
 
-  - Lengths: M=50/200/1000 per side → ~110/~410/~2010 total chars
-  - Vocabulary: 27 chars (26 lowercase + space)
-  - Key metrics: Pattern-completion PPL & accuracy at final 5 positions
-  - Dataset: 10K train + 1K val per length = 33K sequences
+Tests content-based retrieval: model must use current token A as a **query** to find what followed A previously. **Metric**: masked accuracy on induction positions only (~0.04 = random, 1.0 = perfect).
 
-  Project Structure
+---
 
-<img width="687" height="421" alt="image" src="https://github.com/user-attachments/assets/3a3f8fb8-1795-4997-9d52-0f9639aab38f" />
+## Results
 
-  Quick Start
+### Summary Heatmap
 
-  1. Generate Datasets (Already Done ✅)
+All 27 experiments at a glance:
 
-  python3 generate_longrange_copy.py
-  python3 generate_induction.py
-  python3 verify_datasets.py
+| | Shak 256 | Shak 1024 | Shak 2048 | Copy Short | Copy Med | Copy Long | Ind Short | Ind Med | Ind Long |
+|---|---|---|---|---|---|---|---|---|---|
+| **Transformer** | 4.40 | 3.84 | 3.72 | 1.00 | 1.03 | 26.12 | 0.97 | 0.99 | 1.00 |
+| **gMLP** | 3.91 | 3.71 | 3.75 | 1.00 | 26.40 | 26.10 | 0.99 | 0.97 | 0.04 |
+| **minGRU** | 4.43 | 4.34 | 4.33 | 26.04 | 26.05 | 26.07 | 0.04 | 0.04 | 0.04 |
 
-  2. Use in Training
+Green = pass, Red = fail. Shakespeare: perplexity (lower better). Copy: recall PPL (1.0 perfect). Induction: accuracy (1.0 perfect).
 
-  from dataset_utils import get_longrange_dataloader, get_induction_dataloader
-  from evaluation_metrics import compute_longrange_metrics, compute_induction_metrics
+### Key Findings
 
-  # Long-range copy
-  train_dl, tokenizer = get_longrange_dataloader('short', 'train', batch_size=64)
-  val_dl, _ = get_longrange_dataloader('short', 'val', batch_size=64)
+1. **minGRU fails all algorithmic tasks** at every sequence length (PPL≈26, accuracy≈0.04). This confirms the architectural limitation is fundamental, not a capacity or training issue.
 
-  for batch in train_dl:
-      logits = model(batch['input_ids'])
-      loss = criterion(logits, batch['labels'])
-      # ... training ...
+2. **gMLP succeeds within its window, fails beyond it.** Copy-short (T=128 < w=256): perfect. Copy-medium (T=528 > w=256): random. The boundary is sharp, not gradual.
 
-  # Validation with discriminating metrics
-  for batch in val_dl:
-      logits = model(batch['input_ids'])
-      metrics = compute_longrange_metrics(
-          logits,
-          batch['labels'],
-          batch['recall_positions']
-      )
-      print(f"Recall PPL: {metrics['recall_ppl']:.2f}")  # Key metric!
+3. **Transformer succeeds on all tasks** except copy-long (T=2048), where it remains at random after 5K training steps. However...
 
-  Run Matrix
+4. **Phase transition observed.** On induction-long, the Transformer stays at random chance (0.04) for 7,000 steps, then abruptly jumps to perfect accuracy (1.0) within ~2,000 steps. This circuit formation pattern (consistent with Olsson et al. 2022, Power et al. 2022) implies the copy-long failure is a training budget issue, not an architectural one.
 
-  Primary: 27 cells (3 done, 24 to run)
-<img width="1073" height="542" alt="image" src="https://github.com/user-attachments/assets/865d697e-06e6-435c-bc8f-e474f44f8f19" />
+5. **Shakespeare parity confirmed.** All models achieve comparable perplexity (3.7-4.4), replicating Feng et al.'s finding that minGRU matches Transformers on language modelling.
 
-  Ablations: 4 runs at TinyShakespeare-256
-  - Transformer − RoPE, − RMSNorm, − Depth (L=2)
-  - Causal gMLP − Tied SGU
+### The Write-Time vs Read-Time Distinction
 
-  Total: 31 unique runs (3 done, 28 to run)
+Feng et al.'s own "selective copying" task (where minGRU achieves 99.5%) tests **write-time gating**: certain tokens are marked as important at encoding time, and the gate learns to store them. Our tasks test **read-time gating**: retrieval conditioned on a future query. This is the precise boundary that input-only gating cannot cross (Merrill et al. 2024).
 
-  Evaluation Metrics
+---
 
-<img width="1103" height="384" alt="image" src="https://github.com/user-attachments/assets/fd9ce477-a646-4f86-8c70-87eb928a57bd" />
+## Training Protocol
 
+Identical across all 27 experiments:
 
-  Timeline (2 Weeks)
-<img width="1112" height="494" alt="image" src="https://github.com/user-attachments/assets/93b25e94-f48e-45d9-9fbc-36d8cf0936a1" />
+| Parameter | Value |
+|-----------|-------|
+| Optimiser | AdamW (β₁=0.9, β₂=0.95, wd=0.1) |
+| Learning rate | Cosine decay: 3e-4 → 3e-5 |
+| Warmup | 200 steps (linear) |
+| Dropout | 0.05 |
+| Gradient clipping | Max norm 1.0 |
+| Batch size | 64 (32 for gMLP at T=2048) |
+| Steps | 5,000 (Shakespeare, Copy); 20,000 (Induction) |
+| Hardware | NVIDIA A100 (Google Colab) |
+| Seed | 42 |
 
+---
 
-  Compute Budget
+## Repository Structure
 
-  Hardware: NVIDIA H100
-  Total: ~10-13 H100-hours sequential, ~5-6 hours parallelized wall-clock
+```
+DL-RNNs-Revenge/
+├── report/
+│   ├── main.tex                    # Full LaTeX report
+│   ├── references.bib              # Bibliography (13 references)
+│   └── figures/                    # All publication figures (PNG)
+│       ├── 06_phase_transition.png # Induction-long phase transition
+│       ├── 07_summary_heatmap.png  # 27-experiment summary
+│       ├── fig1_copy_ppl_line.png  # Copy task line plot
+│       ├── fig2_induction_accuracy_line.png
+│       ├── 03_shakespeare_ppl.png
+│       └── 04_wall_clock.png
+├── transformer_project/
+│   ├── model.py                    # Transformer (RoPE + RMSNorm + no bias)
+│   ├── train_synthetic.py          # Training script
+│   ├── dataset_utils.py            # Data loading + evaluation
+│   ├── config/                     # Per-experiment configs
+│   └── out/                        # 9 run summaries (summary.json with eval_history)
+├── minGRU/
+│   ├── src/models/mingru.py        # minGRU with parallel log-space scan
+│   ├── src/training/               # Training loop
+│   ├── configs/                    # Experiment configurations
+│   └── runs/                       # 9 run logs (metrics.csv, config, console)
+├── vibhansh-gMLP/
+│   ├── model.py                    # Causal gMLP with windowed SGU
+│   ├── dataset_utils.py            # Data loading
+│   └── results/                    # 9 run summaries (.json)
+├── plots.ipynb                     # Figure generation notebook
+├── run_transformer.ipynb           # Colab: all 9 transformer experiments
+├── run_mingru.ipynb                # Colab: all 9 minGRU experiments
+└── run_gmlp.ipynb                  # Colab: all 9 gMLP experiments
+```
 
-  Results (Preliminary)
+---
 
-  minGRU TinyShakespeare Baseline ✅
-<img width="800" height="287" alt="image" src="https://github.com/user-attachments/assets/202a9cda-5e00-493f-966f-107bae0d391d" />
+## Reproducing Results
 
+1. **Generate data**: Each `run_*.ipynb` notebook includes data generation cells. Synthetic tasks use deterministic random seeds.
 
-  Full results coming after smoke-test gate (Days 3-4).
+2. **Train**: Open the relevant `run_*.ipynb` in Google Colab with A100 runtime. Each notebook runs all 9 experiments for its model sequentially.
 
-  Dataset Statistics
+3. **Plot**: Run `plots.ipynb` after all experiments complete (reads from `out/`, `runs/`, and `results/` directories).
 
-  Total Sequences:      66,000 (33K per task)
-  Training Sequences:   60,000 (30K per task)
-  Validation Sequences:  6,000 (3K per task)
-  Total Storage:        ~200 MB
-  Generation Time:      ~5 seconds
+4. **Compile report**: Upload `report/` folder to Overleaf or compile locally with `pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex`.
 
-  References
+---
 
-  - Feng et al. (2024). "Were RNNs All We Needed?" — minGRU architecture
-  - Liu et al. (2021). "Pay Attention to MLPs" — gMLP architecture
-  - Olsson et al. (2022). "In-context Learning and Induction Heads" — induction task design
-  - Karpathy (2022). TinyShakespeare dataset
+## References
+
+- Feng, L. et al. (2024). "Were RNNs All We Needed?" arXiv:2410.01201
+- Liu, H. et al. (2021). "Pay Attention to MLPs." NeurIPS 34.
+- Olsson, C. et al. (2022). "In-context Learning and Induction Heads." Transformer Circuits Thread.
+- Su, J. et al. (2024). "RoFormer: Enhanced Transformer with Rotary Position Embedding." Neurocomputing.
+- Touvron, H. et al. (2023). "LLaMA: Open and Efficient Foundation Language Models." arXiv:2302.13971
+- Merrill, W. & Sabharwal, A. (2024). "The Illusion of State in State-Space Models." arXiv:2404.08819
+- Power, A. et al. (2022). "Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets." ICLR Workshop.
+
+---
+
+## License
+
+This repository is submitted as coursework for COMP6242 Deep Learning at the Australian National University. All code and analysis is original work by the team members listed above.
