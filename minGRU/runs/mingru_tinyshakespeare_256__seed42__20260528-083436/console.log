@@ -1,0 +1,144 @@
+[train] device = cuda
+[train] task=tinyshakespeare vocab_size=65 block_size=256 has_mask=False
+[train] minGRU params: 798,976
+[train] compiling model with torch.compile...
+[step    50] loss=3.6725 ema=3.8581 lr=7.65e-05
+[step   100] loss=3.0971 ema=3.3379 lr=1.51e-04
+[step   150] loss=2.6513 ema=2.8084 lr=2.26e-04
+[step   200] loss=2.3757 ema=2.4751 lr=3.00e-04
+[step   250] loss=2.1954 ema=2.2578 lr=3.00e-04
+[eval @ step 250] val_ppl=8.7515 masked_ppl=nan masked_acc=nan tps=156005 peak_mem=564MB
+[eval @ step 250] new best val loss: 2.1692
+[step   300] loss=2.0501 ema=2.1062 lr=3.00e-04
+[step   350] loss=1.9922 ema=2.0054 lr=2.99e-04
+[step   400] loss=1.8994 ema=1.9277 lr=2.99e-04
+[step   450] loss=1.8523 ema=1.8639 lr=2.98e-04
+[step   500] loss=1.7868 ema=1.8174 lr=2.97e-04
+[eval @ step 500] val_ppl=6.4345 masked_ppl=nan masked_acc=nan tps=257166 peak_mem=526MB
+[eval @ step 500] new best val loss: 1.8617
+[step   550] loss=1.7711 ema=1.7768 lr=2.96e-04
+[step   600] loss=1.7224 ema=1.7398 lr=2.95e-04
+[step   650] loss=1.7192 ema=1.7108 lr=2.94e-04
+[step   700] loss=1.6745 ema=1.6792 lr=2.93e-04
+[step   750] loss=1.6660 ema=1.6609 lr=2.91e-04
+[eval @ step 750] val_ppl=5.7560 masked_ppl=nan masked_acc=nan tps=1139798 peak_mem=526MB
+[eval @ step 750] new best val loss: 1.7502
+[step   800] loss=1.6291 ema=1.6340 lr=2.90e-04
+[step   850] loss=1.6120 ema=1.6169 lr=2.88e-04
+[step   900] loss=1.5899 ema=1.6010 lr=2.86e-04
+[step   950] loss=1.5834 ema=1.5833 lr=2.84e-04
+[step  1000] loss=1.5898 ema=1.5692 lr=2.82e-04
+[eval @ step 1000] val_ppl=5.4035 masked_ppl=nan masked_acc=nan tps=1138663 peak_mem=526MB
+[eval @ step 1000] new best val loss: 1.6871
+[step  1050] loss=1.5402 ema=1.5546 lr=2.80e-04
+[step  1100] loss=1.5352 ema=1.5482 lr=2.77e-04
+[step  1150] loss=1.5513 ema=1.5363 lr=2.75e-04
+[step  1200] loss=1.4878 ema=1.5203 lr=2.72e-04
+[step  1250] loss=1.5060 ema=1.4992 lr=2.69e-04
+[eval @ step 1250] val_ppl=5.1140 masked_ppl=nan masked_acc=nan tps=1118835 peak_mem=526MB
+[eval @ step 1250] new best val loss: 1.6320
+[step  1300] loss=1.5026 ema=1.4969 lr=2.66e-04
+[step  1350] loss=1.4918 ema=1.4894 lr=2.64e-04
+[step  1400] loss=1.4845 ema=1.4858 lr=2.60e-04
+[step  1450] loss=1.4437 ema=1.4692 lr=2.57e-04
+[step  1500] loss=1.4906 ema=1.4660 lr=2.54e-04
+[eval @ step 1500] val_ppl=5.0008 masked_ppl=nan masked_acc=nan tps=1140822 peak_mem=526MB
+[eval @ step 1500] new best val loss: 1.6096
+[step  1550] loss=1.4301 ema=1.4604 lr=2.51e-04
+[step  1600] loss=1.4750 ema=1.4534 lr=2.47e-04
+[step  1650] loss=1.4223 ema=1.4438 lr=2.44e-04
+[step  1700] loss=1.4196 ema=1.4419 lr=2.40e-04
+[step  1750] loss=1.4103 ema=1.4361 lr=2.36e-04
+[eval @ step 1750] val_ppl=4.8334 masked_ppl=nan masked_acc=nan tps=1133441 peak_mem=526MB
+[eval @ step 1750] new best val loss: 1.5756
+[step  1800] loss=1.4169 ema=1.4322 lr=2.32e-04
+[step  1850] loss=1.4143 ema=1.4214 lr=2.29e-04
+[step  1900] loss=1.3996 ema=1.4141 lr=2.25e-04
+[step  1950] loss=1.4211 ema=1.4125 lr=2.21e-04
+[step  2000] loss=1.4057 ema=1.4104 lr=2.17e-04
+[eval @ step 2000] val_ppl=4.7308 masked_ppl=nan masked_acc=nan tps=1127682 peak_mem=526MB
+[eval @ step 2000] new best val loss: 1.5541
+[step  2050] loss=1.4115 ema=1.4056 lr=2.13e-04
+[step  2100] loss=1.3989 ema=1.4000 lr=2.08e-04
+[step  2150] loss=1.4050 ema=1.3961 lr=2.04e-04
+[step  2200] loss=1.3930 ema=1.3922 lr=2.00e-04
+[step  2250] loss=1.3885 ema=1.3850 lr=1.96e-04
+[eval @ step 2250] val_ppl=4.6802 masked_ppl=nan masked_acc=nan tps=1128971 peak_mem=526MB
+[eval @ step 2250] new best val loss: 1.5433
+[step  2300] loss=1.3842 ema=1.3819 lr=1.91e-04
+[step  2350] loss=1.3920 ema=1.3827 lr=1.87e-04
+[step  2400] loss=1.3676 ema=1.3740 lr=1.83e-04
+[step  2450] loss=1.3972 ema=1.3712 lr=1.78e-04
+[step  2500] loss=1.3675 ema=1.3738 lr=1.74e-04
+[eval @ step 2500] val_ppl=4.6107 masked_ppl=nan masked_acc=nan tps=1134582 peak_mem=526MB
+[eval @ step 2500] new best val loss: 1.5284
+[step  2550] loss=1.3299 ema=1.3638 lr=1.69e-04
+[step  2600] loss=1.3427 ema=1.3567 lr=1.65e-04
+[step  2650] loss=1.3255 ema=1.3624 lr=1.61e-04
+[step  2700] loss=1.3572 ema=1.3532 lr=1.56e-04
+[step  2750] loss=1.3744 ema=1.3547 lr=1.52e-04
+[eval @ step 2750] val_ppl=4.5880 masked_ppl=nan masked_acc=nan tps=1138569 peak_mem=526MB
+[eval @ step 2750] new best val loss: 1.5234
+[step  2800] loss=1.3460 ema=1.3487 lr=1.47e-04
+[step  2850] loss=1.3528 ema=1.3476 lr=1.43e-04
+[step  2900] loss=1.3305 ema=1.3480 lr=1.39e-04
+[step  2950] loss=1.3439 ema=1.3449 lr=1.34e-04
+[step  3000] loss=1.3201 ema=1.3403 lr=1.30e-04
+[eval @ step 3000] val_ppl=4.5633 masked_ppl=nan masked_acc=nan tps=1135684 peak_mem=526MB
+[eval @ step 3000] new best val loss: 1.5180
+[step  3050] loss=1.3312 ema=1.3399 lr=1.26e-04
+[step  3100] loss=1.3668 ema=1.3363 lr=1.22e-04
+[step  3150] loss=1.3383 ema=1.3352 lr=1.17e-04
+[step  3200] loss=1.3411 ema=1.3316 lr=1.13e-04
+[step  3250] loss=1.3125 ema=1.3318 lr=1.09e-04
+[eval @ step 3250] val_ppl=4.5319 masked_ppl=nan masked_acc=nan tps=1144966 peak_mem=526MB
+[eval @ step 3250] new best val loss: 1.5112
+[step  3300] loss=1.3192 ema=1.3254 lr=1.05e-04
+[step  3350] loss=1.3137 ema=1.3246 lr=1.01e-04
+[step  3400] loss=1.3532 ema=1.3250 lr=9.75e-05
+[step  3450] loss=1.3236 ema=1.3232 lr=9.37e-05
+[step  3500] loss=1.3301 ema=1.3162 lr=9.00e-05
+[eval @ step 3500] val_ppl=4.5077 masked_ppl=nan masked_acc=nan tps=1141292 peak_mem=526MB
+[eval @ step 3500] new best val loss: 1.5058
+[step  3550] loss=1.3060 ema=1.3218 lr=8.64e-05
+[step  3600] loss=1.3048 ema=1.3173 lr=8.28e-05
+[step  3650] loss=1.3162 ema=1.3179 lr=7.94e-05
+[step  3700] loss=1.3148 ema=1.3174 lr=7.60e-05
+[step  3750] loss=1.3331 ema=1.3155 lr=7.27e-05
+[eval @ step 3750] val_ppl=4.4919 masked_ppl=nan masked_acc=nan tps=1138430 peak_mem=526MB
+[eval @ step 3750] new best val loss: 1.5023
+[step  3800] loss=1.3477 ema=1.3164 lr=6.95e-05
+[step  3850] loss=1.2946 ema=1.3086 lr=6.65e-05
+[step  3900] loss=1.3173 ema=1.3065 lr=6.35e-05
+[step  3950] loss=1.3339 ema=1.3112 lr=6.06e-05
+[step  4000] loss=1.3189 ema=1.3100 lr=5.79e-05
+[eval @ step 4000] val_ppl=4.4447 masked_ppl=nan masked_acc=nan tps=1127707 peak_mem=526MB
+[eval @ step 4000] new best val loss: 1.4917
+[step  4050] loss=1.3170 ema=1.3064 lr=5.53e-05
+[step  4100] loss=1.3039 ema=1.3015 lr=5.28e-05
+[step  4150] loss=1.2940 ema=1.3027 lr=5.04e-05
+[step  4200] loss=1.2979 ema=1.3018 lr=4.81e-05
+[step  4250] loss=1.2861 ema=1.2995 lr=4.59e-05
+[eval @ step 4250] val_ppl=4.4434 masked_ppl=nan masked_acc=nan tps=1144243 peak_mem=526MB
+[eval @ step 4250] new best val loss: 1.4914
+[step  4300] loss=1.2747 ema=1.2962 lr=4.39e-05
+[step  4350] loss=1.3327 ema=1.2986 lr=4.20e-05
+[step  4400] loss=1.2933 ema=1.2975 lr=4.03e-05
+[step  4450] loss=1.2846 ema=1.3030 lr=3.87e-05
+[step  4500] loss=1.2815 ema=1.2952 lr=3.72e-05
+[eval @ step 4500] val_ppl=4.4219 masked_ppl=nan masked_acc=nan tps=1146573 peak_mem=526MB
+[eval @ step 4500] new best val loss: 1.4866
+[step  4550] loss=1.2828 ema=1.2950 lr=3.58e-05
+[step  4600] loss=1.3290 ema=1.2967 lr=3.46e-05
+[step  4650] loss=1.2838 ema=1.2919 lr=3.35e-05
+[step  4700] loss=1.2782 ema=1.2959 lr=3.26e-05
+[step  4750] loss=1.2907 ema=1.2903 lr=3.18e-05
+[eval @ step 4750] val_ppl=4.4138 masked_ppl=nan masked_acc=nan tps=1122198 peak_mem=526MB
+[eval @ step 4750] new best val loss: 1.4847
+[step  4800] loss=1.2957 ema=1.2916 lr=3.12e-05
+[step  4850] loss=1.2590 ema=1.2912 lr=3.07e-05
+[step  4900] loss=1.3314 ema=1.2964 lr=3.03e-05
+[step  4950] loss=1.3103 ema=1.2884 lr=3.01e-05
+[step  5000] loss=1.3054 ema=1.2900 lr=3.00e-05
+[eval @ step 5000] val_ppl=4.4265 masked_ppl=nan masked_acc=nan tps=1148514 peak_mem=526MB
+[train] DONE {'best_val_loss': 1.4847466479772808, 'best_val_ppl': 4.413847014041289, 'total_steps': 5000, 'wall_clock_seconds': 107.15, 'n_parameters': 798976}

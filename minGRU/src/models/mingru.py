@@ -217,10 +217,15 @@ class MinGRU(nn.Module):
         #         = -softplus(-z_logits) + log_g(h_tilde_pre)
         log_b = -F.softplus(-z_logits) + _log_g(h_tilde_pre)
 
-        # Run the scan in fp32 for numerical safety. logcumsumexp on bf16 is
-        # noisy at length ~2048. We cast back to the input dtype on exit.
+        # Run the scan in fp32 for numerical safety at long sequences.
+        # logcumsumexp on bf16 is noisy at length ~2048 due to cumulative
+        # product underflow; at shorter lengths bf16 is fine.
         in_dtype = x.dtype
-        h = parallel_scan_log(log_a.float(), log_b.float()).to(in_dtype)
+        T = x.shape[1]
+        if T > 512:
+            h = parallel_scan_log(log_a.float(), log_b.float()).to(in_dtype)
+        else:
+            h = parallel_scan_log(log_a, log_b)
         return self.out_proj(h)
 
     @torch.no_grad()
