@@ -39,7 +39,7 @@ class LongRangeCopyDataset(Dataset):
 
         # Load sequences
         with open(self.file_path, 'r') as f:
-            self.sequences = [line.strip() for line in f.readlines()]
+            self.sequences = [ln for ln in f.read().split('\n') if ln]
 
     def __len__(self) -> int:
         return len(self.sequences)
@@ -47,30 +47,29 @@ class LongRangeCopyDataset(Dataset):
     def __getitem__(self, idx: int) -> Dict[str, torch.Tensor]:
         sequence = self.sequences[idx]
 
-        # Tokenize
         tokens = self.tokenizer.encode(sequence)
+        seq_len = len(tokens)
 
-        # Pad or truncate to block_size
         if len(tokens) < self.block_size:
             tokens = tokens + [0] * (self.block_size - len(tokens))
         else:
             tokens = tokens[:self.block_size]
+            seq_len = min(seq_len, self.block_size)
 
-        # Create input (tokens[:-1]) and target (tokens[1:])
         input_ids = torch.tensor(tokens[:-1], dtype=torch.long)
         labels = torch.tensor(tokens[1:], dtype=torch.long)
 
-        # Find recall positions (last 5 chars of sequence)
-        # Format: "key: XXXXX | distractors | recall: XXXXX"
-        # We want to mark the last 5 character positions
         recall_positions = torch.zeros(len(input_ids), dtype=torch.bool)
-        if len(tokens) >= 5:
-            recall_positions[-5:] = True
+        if seq_len >= 6:
+            start = seq_len - 6
+            end = seq_len - 1
+            recall_positions[start:end] = True
 
         return {
             'input_ids': input_ids,
             'labels': labels,
-            'recall_positions': recall_positions
+            'recall_positions': recall_positions,
+            'seq_len': seq_len,
         }
 
 
@@ -87,13 +86,13 @@ class InductionDataset(Dataset):
 
         # Load sequences
         with open(self.file_path, 'r') as f:
-            self.sequences = [line.strip() for line in f.readlines()]
+            self.sequences = [ln for ln in f.read().split('\n') if ln]
 
         # Load patterns if provided
         self.patterns = None
         if pattern_file:
             with open(pattern_file, 'r') as f:
-                self.patterns = [line.strip() for line in f.readlines()]
+                self.patterns = [ln for ln in f.read().split('\n') if ln]
 
     def __len__(self) -> int:
         return len(self.sequences)
