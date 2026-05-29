@@ -117,7 +117,7 @@ All three models should achieve comparable performance on Shakespeare, since lan
 
 \textbf{Long-Range Copy.} Sequences of the form \texttt{[content][separator][content]}, where the model must reproduce the first half verbatim after the separator. Content is drawn from a 26-character alphabet. Short: $T{=}128$ (64 tokens to memorise), Medium: $T{=}528$ (256 tokens), Long: $T{=}2048$ (1024 tokens). This task requires pure storage and retrieval; no statistical shortcut exists. Metric: recall perplexity (computed only on the recalled portion).
 
-\textbf{Induction Heads.} Sequences containing repeated bigram patterns: after observing $[A][B]$ earlier in the sequence, the model must predict $B$ when $A$ reappears. Generated at $T \in \{128, 256, 2048\}$ with 5 induction patterns per sequence. This tests content-based retrieval: the model must use the current token $A$ as a \emph{query} to find what followed $A$ previously. Metric: masked accuracy on induction positions only.
+\textbf{Induction Heads.} Sequences of the form \texttt{[random][5-char pattern P][random][P[:4]]}, where the model must predict the 5th character of $P$ given its first 4 characters reappearing later in the sequence. Generated at $T \in \{128, 256, 2048\}$ with one pattern per sequence. This tests content-based retrieval: the model must use the current context as a \emph{query} to locate where the pattern appeared previously and recall its final character. Metric: accuracy at the prediction position (the 5th character).
 
 \subsection{Model Configurations}
 
@@ -164,7 +164,7 @@ All 27 experiments share an identical training protocol to ensure fair compariso
 
 \subsection{Implementation}
 
-The minGRU implementation directly follows \citet{feng2024were}, reproducing their Appendix C.2 language modelling recipe: each block consists of a causal Conv1d ($k{=}4$), the minGRU cell, and an MLP, all with pre-norm RMSNorm and residual connections. The Transformer is built from nanoGPT with LLaMA-inspired modifications (RoPE, RMSNorm, no bias), reflecting a subset of the recipe validated at scale \citep{touvron2023llama}. The causal gMLP adapts \citet{liu2021pay} with a banded causal SGU (window $w{=}256$), as described in Section~2.3. Each model has an independent training script with shared interfaces for task specification. Data generation for synthetic tasks uses identical random processes across models. Source code is available at [repository link].
+The minGRU implementation directly follows \citet{feng2024were}, reproducing their Appendix C.2 language modelling recipe: each block consists of a causal Conv1d ($k{=}4$), the minGRU cell, and an MLP, all with pre-norm RMSNorm and residual connections. The Transformer is built from nanoGPT with LLaMA-inspired modifications (RoPE, RMSNorm, no bias), reflecting a subset of the recipe validated at scale \citep{touvron2023llama}. The causal gMLP adapts \citet{liu2021pay} with a banded causal SGU (window $w{=}256$), as described in Section~2.3. Each model has an independent training script with shared interfaces for task specification. Data generation for synthetic tasks uses identical random processes across models. Source code is available at \url{https://github.com/Lord-V15/DL-RNNs-Revenge}.
 
 \section{Results}
 
@@ -237,7 +237,7 @@ Figure~\ref{fig:wallclock} shows wall-clock training time. The Transformer is fa
     \label{fig:phase}
 \end{figure}
 
-Figure~\ref{fig:phase} reveals a striking training dynamic: the Transformer's induction-long accuracy remains at random baseline (0.04) for 7,000 steps, then undergoes a rapid phase transition to perfect accuracy (1.0) within ${\sim}$2,000 steps. This is consistent with ``grokking'' \citep{power2022grokking} and the circuit formation hypothesis \citep{olsson2022context}: the attention heads abruptly snap into an induction circuit configuration. This implies the Transformer's failure at $T{=}2048$ copy likely reflects insufficient training (5K steps) for the phase transition to occur, rather than an architectural limitation; given more steps, we predict the copy circuit would similarly emerge.
+Figure~\ref{fig:phase} reveals a striking training dynamic: the Transformer's induction-long accuracy remains at random baseline (0.04) for 7,000 steps, then rises sharply (0.48 at step 8K, 1.0 at step 9K), completing the transition in ${\sim}$2,000 steps. This is consistent with ``grokking'' \citep{power2022grokking} and the circuit formation hypothesis \citep{olsson2022context}: the attention heads abruptly snap into an induction circuit configuration. This implies the Transformer's failure at $T{=}2048$ copy likely reflects insufficient training (5K steps) for the phase transition to occur, rather than an architectural limitation; given more steps, we predict the copy circuit would similarly emerge.
 
 \section{Discussion}
 
@@ -328,6 +328,6 @@ Our 27-experiment stress test shows that \citeauthor{feng2024were}'s claim holds
 \end{itemize}
 
 \subsection*{Use of Generative AI}
-Claude (Anthropic) was used to assist with: training script scaffolding, debugging runtime errors, plotting code, and \LaTeX{} formatting of this report. The research idea, paper selection, experimental design, architectural analysis, hypothesis formation, and interpretation of results are entirely the team's original work, developed through engagement with COMP6242 course material and prior coursework. All AI-generated code and text were reviewed, verified, and modified by team members before use.
+Claude (Anthropic) was used to assist with: training script scaffolding, debugging runtime errors, plotting code, and report formatting. The research idea, paper selection, experimental design, architectural analysis, hypothesis formation, and interpretation of results are entirely the team's original work, developed through engagement with COMP6242 course material and prior coursework. All AI-generated code and text were reviewed, verified, and modified by team members before use.
 
 \end{document}

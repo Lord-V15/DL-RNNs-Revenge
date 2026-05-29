@@ -76,9 +76,9 @@ All 27 experiments at a glance:
 
 | | Shak 256 | Shak 1024 | Shak 2048 | Copy Short | Copy Med | Copy Long | Ind Short | Ind Med | Ind Long |
 |---|---|---|---|---|---|---|---|---|---|
-| **Transformer** | 4.40 | 3.84 | 3.72 | 1.00 | 1.03 | 26.12 | 0.97 | 0.99 | 1.00 |
-| **gMLP** | 3.91 | 3.71 | 3.75 | 1.00 | 26.40 | 26.10 | 0.99 | 0.97 | 0.04 |
-| **minGRU** | 4.43 | 4.34 | 4.33 | 26.04 | 26.05 | 26.07 | 0.04 | 0.04 | 0.04 |
+| **Transformer** | 4.41 | 4.24 | 4.24 | 1.00 | 1.03 | 26.12 | 0.97 | 1.00 | 1.00 |
+| **gMLP** | 3.79 | 3.72 | 3.71 | 1.00 | 26.38 | 26.05 | 1.00 | 1.00 | 0.04 |
+| **minGRU** | 4.41 | 4.34 | 4.32 | 26.22 | 26.20 | 26.09 | 0.04 | 0.05 | 0.03 |
 
 Green = pass, Red = fail. Shakespeare: perplexity (lower better). Copy: recall PPL (1.0 perfect). Induction: accuracy (1.0 perfect).
 
