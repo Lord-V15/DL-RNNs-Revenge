@@ -4,13 +4,13 @@
   "seed": 42,
   "model": "causal_gmlp",
   "params": 801664,
-  "best_val_loss": 1.30210422039032,
-  "best_val_ppl": 3.6770258055382996,
+  "best_val_loss": 1.314867913722992,
+  "best_val_ppl": 3.724259029251826,
   "final_results": {
-    "overall_loss": 1.5307055847528053,
-    "overall_ppl": 4.621436487301081
+    "overall_loss": 1.5353406336646742,
+    "overall_ppl": 4.642906790978254
   },
-  "training_time_sec": 4239.10852432251,
+  "training_time_sec": 2362.9141466617584,
   "max_steps": 5000,
   "config": {
     "task": "shakespeare",
@@ -21,15 +21,15 @@
     "learning_rate": 0.0003,
     "warmup_steps": 200,
     "lr_decay_steps": null,
-    "weight_decay": 0.01,
+    "weight_decay": 0.1,
     "grad_clip": 1.0,
     "seed": 42,
-    "data_path": "./data/tinyshakespeare/input.txt",
+    "data_path": "data/tinyshakespeare/input.txt",
     "data_dir": "./data",
-    "output_dir": "./results",
+    "output_dir": "results",
     "log_interval": 100,
-    "eval_interval": 500,
+    "eval_interval": 250,
     "dropout": 0.05,
-    "save_checkpoint": true
+    "save_checkpoint": false
   }
 }

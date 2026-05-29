@@ -1,7 +1,0 @@
-[train] device = cuda
-[train] task=tinyshakespeare vocab_size=65 block_size=2048 has_mask=False
-[train] minGRU params: 798,976
-[train] compiling model with torch.compile...
-[step    50] loss=3.6877 ema=3.8589 lr=7.65e-05
-[step   100] loss=3.0812 ema=3.3267 lr=1.51e-04
-[step   150] loss=2.6017 ema=2.7691 lr=2.26e-04
