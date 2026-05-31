@@ -59,12 +59,12 @@ Format: `[content][separator][content]` — model must reproduce the first half 
 No statistical shortcut exists. **Metric**: recall perplexity (computed only on recalled portion; 1.0 = perfect, ~26 = random).
 
 ### Task 3: Induction Heads (Content-Based Retrieval)
-Sequences containing repeated bigram patterns: after observing [A][B] earlier, model must predict B when A reappears. 5 induction patterns per sequence.
+Sequences containing repeated 5-character patterns: after observing a pattern [P₀P₁P₂P₃P₄] earlier, model must predict the remaining characters when the pattern prefix reappears. One induction pattern per sequence.
 - Short: T=128
 - Medium: T=256
 - Long: T=2048
 
-Tests content-based retrieval: model must use current token A as a **query** to find what followed A previously. **Metric**: masked accuracy on induction positions only (~0.04 = random, 1.0 = perfect).
+Tests content-based retrieval: model must use the current context as a **query** to find what followed that context previously. **Metric**: induction accuracy at position 5 (final character completion; ~0.04 = random, 1.0 = perfect).
 
 ---
 
@@ -90,7 +90,7 @@ Green = pass, Red = fail. Shakespeare: perplexity (lower better). Copy: recall P
 
 3. **Transformer succeeds on all tasks** except copy-long (T=2048), where it remains at random after 5K training steps. However...
 
-4. **Phase transition observed.** On induction-long, the Transformer stays at random chance (0.04) for 7,000 steps, then abruptly jumps to perfect accuracy (1.0) within ~2,000 steps. This circuit formation pattern (consistent with Olsson et al. 2022, Power et al. 2022) implies the copy-long failure is a training budget issue, not an architectural one.
+4. **Phase transition observed.** On induction-long, the Transformer shows minimal improvement through ~7,000-8,000 steps, then abruptly jumps to perfect accuracy (1.0) between steps 8,000 and 10,000. This circuit formation pattern (consistent with Olsson et al. 2022, Power et al. 2022) suggests the copy-long failure may similarly be a training budget issue, though direct evidence is lacking.
 
 5. **Shakespeare parity confirmed.** All models achieve comparable perplexity (3.7-4.4), replicating Feng et al.'s finding that minGRU matches Transformers on language modelling.
 
