@@ -122,16 +122,13 @@ Identical across all 27 experiments:
 
 ```
 DL-RNNs-Revenge/
-├── report/
-│   ├── main.tex                    # Full LaTeX report
-│   ├── references.bib              # Bibliography (13 references)
-│   └── figures/                    # All publication figures (PNG)
-│       ├── 06_phase_transition.png # Induction-long phase transition
-│       ├── 07_summary_heatmap.png  # 27-experiment summary
-│       ├── fig1_copy_ppl_line.png  # Copy task line plot
-│       ├── fig2_induction_accuracy_line.png
-│       ├── 03_shakespeare_ppl.png
-│       └── 04_wall_clock.png
+├── figures/                        # All publication figures (PNG)
+│   ├── 06_phase_transition.png     # Induction-long phase transition
+│   ├── 07_summary_heatmap.png      # 27-experiment summary
+│   ├── fig1_copy_ppl_line.png      # Copy task line plot
+│   ├── fig2_induction_accuracy_line.png
+│   ├── 03_shakespeare_ppl.png
+│   └── 04_wall_clock.png
 ├── transformer_project/
 │   ├── model.py                    # Transformer (RoPE + RMSNorm + no bias)
 │   ├── train_synthetic.py          # Training script
@@ -163,7 +160,7 @@ DL-RNNs-Revenge/
 
 3. **Plot**: Run `plots.ipynb` after all experiments complete (reads from `out/`, `runs/`, and `results/` directories).
 
-4. **Compile report**: Upload `report/` folder to Overleaf or compile locally with `pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex`.
+4. **Report**: Compiled separately via Overleaf. Figures are in `figures/`.
 
 ---
 
