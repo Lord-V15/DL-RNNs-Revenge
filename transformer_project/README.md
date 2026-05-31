@@ -61,14 +61,3 @@ n_head=4, L=4, vocab=65, no bias).
 - **Embedding**: tied input/output (lm_head shares wte's weight)
 - **Attention**: causal via `is_causal=True` in scaled_dot_product_attention
   (Flash attention picked automatically by PyTorch on H100 / L4)
-
-## Ablations (proposal §6, four single-seed runs at length 256)
-
-Not yet wired up. Per the proposal:
-1. `− RoPE`     (apply_rope → identity)
-2. `− RMSNorm`  (RMSNorm → nn.LayerNorm)
-3. `− Depth`    (L=2, widen d to keep ~745K params)
-4. (4th is Causal gMLP, Adam's owner)
-
-These will use the same trainer with three small variants of `model.py`.
-Implementation deferred until after primary TinyShakespeare runs are clean.
